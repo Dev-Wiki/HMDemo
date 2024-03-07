@@ -1,6 +1,9 @@
 {
+  // app的构建配置
   "app": {
+    //签名配置
     "signingConfigs": [],
+    //产品配置
     "products": [
       {
         "name": "default",
@@ -10,6 +13,7 @@
         "runtimeOS": "HarmonyOS",
       }
     ],
+    //构建类型集合
     "buildModeSet": [
       {
         "name": "debug",
@@ -19,10 +23,15 @@
       }
     ]
   },
+  //组件集合
   "modules": [
+    // app组件
     {
+      // 组件名称
       "name": "app",
+      // 组件源码位置
       "srcPath": "./app",
+      // 构建目标
       "targets": [
         {
           "name": "default",
@@ -32,9 +41,10 @@
         }
       ]
     },
+    //shareLib组件
     {
-      "name": "shareLib",
-      "srcPath": "./shareLib",
+      "name": "common_ui",
+      "srcPath": "./common_ui",
       "targets": [
         {
           "name": "default",

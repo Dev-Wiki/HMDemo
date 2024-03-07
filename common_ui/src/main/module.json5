@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "shareLib",
+    "name": "common_ui",
     "type": "shared",
     "description": "$string:shared_desc",
     "deviceTypes": [
