@@ -31,6 +31,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "shareLib",
+      "srcPath": "./shareLib",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
