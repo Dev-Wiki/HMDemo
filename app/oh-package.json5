@@ -5,6 +5,8 @@
   "main": "",
   "author": "",
   "license": "",
-  "dependencies": {}
+  "dependencies": {
+    "@devwiki/common_ui": "file:../common_ui"
+  }
 }
 
