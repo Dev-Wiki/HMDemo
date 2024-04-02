@@ -68,7 +68,7 @@ class IndexWebViewController extends WebViewController {
 
 class IndexViewModel {
   webUrl: string = "https://devwiki.net";
-  pageTitle: ResourceStr = "ViewModel Title";
+  pageTitle: ResourceStr = "";
 
   constructor() {
   }
