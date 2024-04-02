@@ -9,6 +9,11 @@
       "2in1"
     ],
     "deliveryWithInstall": true,
-    "pages": "$profile:main_pages"
+    "pages": "$profile:main_pages",
+    "requestPermissions": [
+      {
+        "name" :  "ohos.permission.INTERNET"
+      }
+    ]
   }
 }

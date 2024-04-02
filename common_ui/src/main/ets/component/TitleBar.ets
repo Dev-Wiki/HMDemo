@@ -1,81 +1,121 @@
 import { ComponentConst } from './ComponentConst'
 
+export enum TitleBarMenuType{
+  /**
+   * 不显示
+   */
+  None = 0,
+  /**
+   * 显示Icon
+   */
+  Icon = 1,
+  /**
+   * 显示文本
+   */
+  Text = 2
+}
 
 @Preview
 @Component
 export struct TitleBar {
 
-  @State barHeight: number = 48;
-  @State menuPadding: number = 8;
+  @Prop title: ResourceStr;
 
-  @State leftText: ResourceStr = "Back";
-  @State leftTextVisible: Visibility = Visibility.Hidden;
-  @State leftIconVisible: Visibility = Visibility.Visible;
+  @Prop barHeight: number = 48;
+  @Prop menuPadding: number = 8;
 
-  @State rightText: ResourceStr = "Menu";
-  @State rightTextVisible: Visibility = Visibility.Hidden;
-  @State rightIconVisible: Visibility = Visibility.Hidden;
+  @Prop leftText: ResourceStr = "";
+  @Prop leftIcon: Resource = $r("app.media.ic_chevron_left");
+  @Prop leftMenuType: TitleBarMenuType = TitleBarMenuType.Icon;
 
-  @State title: ResourceStr = "Title";
-  @State titleTextAlign: TextAlign = TextAlign.Start;
-  @State titleVisible: Visibility = Visibility.Visible;
+  @Prop rightText: ResourceStr = "";
+  @Prop rightIcon: Resource = $r("app.media.ic_close");
+  @Prop rightMenuType: TitleBarMenuType = TitleBarMenuType.Icon;
+
+  @Prop titleTextAlign: TextAlign = TextAlign.Start;
+  @Prop titleVisible: Visibility = Visibility.Visible;
 
   onLeftClicked?: Function;
   onRightClicked?: Function;
 
+  @Styles setWidthAndHeight() {
+    .height(this.barHeight).width(this.barHeight)
+  }
+
   build() {
     Row() {
       RelativeContainer() {
-        Button() {
-          Stack() {
-            Text(this.leftText).textAlign(TextAlign.Center)
-              .width(this.barHeight).height(this.barHeight).textAlign(TextAlign.Center)
-              .visibility(this.leftTextVisible)
-            Image($r("app.media.ic_chevron_left"))
-              .width(this.barHeight).height(this.barHeight).padding(this.menuPadding)
-              .visibility(this.leftIconVisible)
+        if (this.leftMenuType != TitleBarMenuType.None) {
+          Button() {
+            if (this.leftMenuType == TitleBarMenuType.Icon) {
+              Image(this.leftIcon)
+                .setWidthAndHeight()
+                .padding(this.menuPadding)
+            } else {
+              Text(this.leftText)
+                .textAlign(TextAlign.Center)
+                .setWidthAndHeight()
+            }
           }
-        }.backgroundColor(0xFFFFFF).type(ButtonType.Normal).stateEffect(true)
-        .onClick((event) => {
-          this.onLeftClicked?.(event);
-        }).alignRules({
-          top: {anchor: ComponentConst.ContainerId, align: VerticalAlign.Top},
-          left: {anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start},
-          bottom: {anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-        })
-        .id("left_menu")
-
-        Text(this.title).visibility(this.titleVisible).textAlign(this.titleTextAlign).margin({left: this.menuPadding})
+          .setWidthAndHeight()
+          .backgroundColor(0xFFFFFF)
+          .type(ButtonType.Normal)
+          .stateEffect(true)
+          .onClick((event) => {
+            this.onLeftClicked?.(event);
+          })
           .alignRules({
-            top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top},
-            left: { anchor: "left_menu", align: HorizontalAlign.End},
-            right: { anchor: "right_menu", align: HorizontalAlign.Start},
-            bottom: {anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-          }).id("center_row")
+            top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
+            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
+          }).id("left_menu")
+        }
 
-        Stack(){
+        if (this.titleVisible == Visibility.Visible) {
+          Text(this.title)
+            .textAlign(this.titleTextAlign)
+            .margin({
+              left: this.leftMenuType != TitleBarMenuType.None ? this.barHeight : 0,
+              right: this.leftMenuType != TitleBarMenuType.None ? this.barHeight : 0
+            })
+            .padding({left: this.leftMenuType != TitleBarMenuType.None ? 0 : this.menuPadding})
+            .alignRules({
+              top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
+              left: {
+                anchor: this.leftMenuType != TitleBarMenuType.None ? "left_menu" : ComponentConst.ContainerId,
+                align: HorizontalAlign.Start
+              },
+              right: {
+                anchor: this.leftMenuType != TitleBarMenuType.None ? "right_menu" : ComponentConst.ContainerId,
+                align: HorizontalAlign.End
+              },
+              bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
+            })
+            .id("title")
+        }
+
+        if (this.rightMenuType != TitleBarMenuType.None) {
           Button() {
-            Image($r("app.media.ic_close"))
-              .width(this.barHeight).height(this.barHeight)
-              .padding(this.menuPadding)
-          }.backgroundColor(0xFFFFFF).type(ButtonType.Normal).stateEffect(true).visibility(this.rightIconVisible)
+            if (this.rightMenuType == TitleBarMenuType.Icon) {
+              Image(this.rightIcon)
+                .setWidthAndHeight().padding(this.menuPadding)
+            } else {
+              Text(this.rightText)
+                .textAlign(TextAlign.Center)
+                .setWidthAndHeight()
+            }
+          }
+          .setWidthAndHeight()
+          .backgroundColor(0xFFFFFF)
+          .type(ButtonType.Normal)
+          .stateEffect(true)
           .onClick((event) => {
             this.onRightClicked?.(event);
-          });
-
-          Button() {
-            Text(this.rightText).textAlign(TextAlign.Center)
-              .width(this.barHeight).height(this.barHeight).textAlign(TextAlign.Center)
-          }.backgroundColor(0xFFFFFF).type(ButtonType.Normal).stateEffect(true).visibility(this.rightTextVisible)
-          .onClick((event) => {
-            this.onRightClicked?.(event);
-          });
-        }.alignRules({
-          top: {anchor: ComponentConst.ContainerId, align: VerticalAlign.Top},
-          right: {anchor: ComponentConst.ContainerId, align: HorizontalAlign.End},
-          bottom: {anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-        })
-        .id("right_menu")
+          })
+          .alignRules({
+            top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
+            right: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.End },
+          }).id("right_menu")
+        }
       }
       .width('100%').height('100%')
     }.height(this.barHeight)
