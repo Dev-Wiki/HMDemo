@@ -51,8 +51,8 @@ export class WebViewController implements WebScriptCallback, WebScriptFunction, 
     return this.webviewController?.getUrl() ?? "";
   }
 
-  getCount(): number {
-    return 0;
+  getNativePageFileName(): string {
+    return "";
   }
 
   alert(message: string): void {

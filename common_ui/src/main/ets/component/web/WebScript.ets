@@ -3,7 +3,7 @@
  * H5 调用 native的函数
  */
 export interface WebScriptCallback {
-  getCount(): number;
+  getNativePageFileName(): string;
 }
 
 /**

@@ -1,34 +1,24 @@
-import { WebView, ComponentConst,  CommonRes, TitleBar, WebViewController } from '@devwiki/common_ui';
+import { ComponentConst, TitleBar } from '@devwiki/common_ui';
+import { TitleBarMenuType } from '@devwiki/common_ui/src/main/ets/component/TitleBar';
+import { router } from '@kit.ArkUI';
+import { PageRouter } from './PageRouter';
 
 @Entry
 @Component
 struct Index {
+  @State title: string = "Home";
 
-  @State viewModel: IndexViewModel = new IndexViewModel();
-  private webViewController?: IndexWebViewController;
-
-  aboutToAppear(): void {
-    this.webViewController = new IndexWebViewController(this.viewModel);
-  }
-
-  onTitleBarLeftClick(event: ClickEvent) {
+  onTitleBarLeftClick(_event: ClickEvent) {
     this.getUIContext().getRouter().back();
-  }
-
-  onTitleBarRightClick(event: ClickEvent) {
-    this.webViewController?.refresh();
   }
 
   build() {
     Column() {
       RelativeContainer() {
         TitleBar({
-          title: this.viewModel.pageTitle,
+          title: this.title,
           onLeftClicked: this.onTitleBarLeftClick,
-          rightIcon: CommonRes.getIconRefresh(),
-          // 必须这么写 onTitleBarRightClick内部的代码才执行,
-          // 直接 onRightClicked: this.onTitleBarRightClick 这么写, 代码不执行
-          onRightClicked: (event: ClickEvent) => { this.onTitleBarRightClick(event)},
+          rightMenuType: TitleBarMenuType.None
         })
           .width('100%')
           .alignRules({
@@ -41,39 +31,23 @@ struct Index {
           left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
         }).width('100%').id("divider")
 
-        WebView({ webUrl: this.viewModel?.webUrl, controller: this.webViewController }).width('100%')
-          .alignRules({
-            top: { anchor: "divider", align: VerticalAlign.Bottom },
-            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
-            bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-          }).id("host_web")
+        Column() {
+          Button("WebPage").align(Alignment.Center).height(36).width(80).onClick(() => {
+            router.pushUrl({
+              // 两种方式都可以加载Page, 一个是和 resources/base/profile/main_pages.ets中的配置相同
+              // 一个是绝对路径
+              // url: "pages/WebPage",
+              url: PageRouter.WebPage
+            }, router.RouterMode.Single);
+          })
+        }
+        .width('100%')
+        .alignRules({
+          top: { anchor: "divider", align: VerticalAlign.Bottom },
+          left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
+          bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
+        }).id("host_web")
       }.width('100%').height('100%')
     }.width('100%').height('100%')
-  }
-}
-
-class IndexWebViewController extends WebViewController {
-  private viewModel: IndexViewModel;
-
-  constructor(viewModel: IndexViewModel) {
-    super()
-    this.viewModel = viewModel;
-  }
-
-  onPageEnd(title: string): void {
-    this.viewModel.pageTitle = title;
-  }
-
-}
-
-class IndexViewModel {
-  webUrl: string = "https://devwiki.net";
-  pageTitle: ResourceStr = "";
-
-  constructor() {
-  }
-
-  onTitleChanged(title: string) {
-    this.pageTitle = title;
   }
 }
