@@ -3,19 +3,6 @@
   "app": {
     //签名配置
     "signingConfigs": [
-      {
-        "name": "default",
-        "type": "HarmonyOS",
-        "material": {
-          "certpath": "C:\\Users\\zyz\\.ohos\\config\\default_HM4Demo_0I_80ITv-w7dlG1L2HWydZLUTxyIvnvhDmLyWt4xW5c=.cer",
-          "storePassword": "00000019BC13FA4B887BEC2E080C308036113BCA1D1D4599A04C7DE2FC056D9B3D5BBB3F90A2746AFA",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001912B1B816E14D7892380189718431BDF3997A14E9462470BCB07EBB257FE32FE777D748DAE3",
-          "profile": "C:\\Users\\zyz\\.ohos\\config\\default_HM4Demo_0I_80ITv-w7dlG1L2HWydZLUTxyIvnvhDmLyWt4xW5c=.p7b",
-          "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\zyz\\.ohos\\config\\default_HM4Demo_0I_80ITv-w7dlG1L2HWydZLUTxyIvnvhDmLyWt4xW5c=.p12"
-        }
-      }
     ],
     //产品配置
     "products": [
