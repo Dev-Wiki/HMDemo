@@ -73,20 +73,20 @@ export struct TitleBar {
         if (this.titleVisible == Visibility.Visible) {
           Text(this.title)
             .textAlign(this.titleTextAlign)
-            .margin({
-              left: this.leftMenuType != TitleBarMenuType.None ? this.barHeight : 0,
-              right: this.leftMenuType != TitleBarMenuType.None ? this.barHeight : 0
+            .backgroundColor(0xFFFFFF)
+            .padding({
+              left: this.leftMenuType != TitleBarMenuType.None ? 0 : this.menuPadding,
+              right: this.rightMenuType != TitleBarMenuType.None ? 0 : this.menuPadding
             })
-            .padding({left: this.leftMenuType != TitleBarMenuType.None ? 0 : this.menuPadding})
             .alignRules({
               top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
               left: {
                 anchor: this.leftMenuType != TitleBarMenuType.None ? "left_menu" : ComponentConst.ContainerId,
-                align: HorizontalAlign.Start
+                align: this.leftMenuType != TitleBarMenuType.None ? HorizontalAlign.End : HorizontalAlign.Start
               },
               right: {
                 anchor: this.leftMenuType != TitleBarMenuType.None ? "right_menu" : ComponentConst.ContainerId,
-                align: HorizontalAlign.End
+                align: this.leftMenuType != TitleBarMenuType.None ? HorizontalAlign.Start : HorizontalAlign.End
               },
               bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
             })

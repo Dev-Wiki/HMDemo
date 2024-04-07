@@ -5,3 +5,4 @@ export { Emitter } from './src/main/ets/event/Emitter'
 export { WebView, WebViewController } from './src/main/ets/component/web/WebView'
 
 export { CommonRes } from './src/main/ets/utils/CommonRes'
+export { ScreenUtil } from './src/main/ets/utils/ScreenUtil'
