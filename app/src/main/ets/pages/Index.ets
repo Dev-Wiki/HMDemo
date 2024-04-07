@@ -1,39 +1,47 @@
 import { ComponentConst, ScreenUtil, TitleBar } from '@devwiki/common_ui';
 import { TitleBarMenuType } from '@devwiki/common_ui/src/main/ets/component/TitleBar';
-import { router } from '@kit.ArkUI';
-import { PageRouter } from './PageRouter';
 import { WebPage } from './WebPage';
+import { window } from '@kit.ArkUI';
 
 @CustomDialog
 struct WebViewDialog {
 
-  aboutToAppear(): void {
-    ScreenUtil.getInstance().initScreenSize();
-  }
-
+  showHeight: Length = '50%';
   dialogController: CustomDialogController = new CustomDialogController({
     builder: WebViewDialog({})
   });
 
   build() {
-    WebPage().height('100%').width('50%')
+    WebPage({onTitleBarLeftClick: ()=> {
+      this.dialogController.close();
+    }}).height(this.showHeight).width('100%')
   }
 }
 
 @Entry
 @Component
 struct Index {
+
   @State title: string = "Home";
+  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
+
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebViewDialog(),
-    alignment: DialogAlignment.CenterEnd,
+    builder: WebViewDialog({showHeight: this.isPortrait ? '95%' : '50%'}),
+    alignment: DialogAlignment.BottomEnd,
     customStyle: true
   })
+
+  aboutToAppear(): void {
+    ScreenUtil.getInstance().initScreenSize();
+  }
+
+  onPageShow(): void {
+    ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION_PORTRAIT);
+  }
 
   onTitleBarLeftClick(_event: ClickEvent) {
     this.getUIContext().getRouter().back();
   }
-
 
   onButtonClicked() {
     this.dialogController.open();
@@ -72,7 +80,7 @@ struct Index {
 
           GridItem() {
             Button("WebPage").type(ButtonType.Capsule).height(32).width(80)
-              .onClick(() => { });
+              .onClick(() => { this.dialogController.open() });
           }.rowStart(0).rowEnd(0).columnStart(1).columnEnd(1)
 
           GridItem() {

@@ -1,4 +1,5 @@
 import window from '@ohos.window';
+import mediaquery from '@ohos.mediaquery';
 
 export class ScreenUtil {
   // TODO: 工具待抽离， key统一定义
@@ -14,6 +15,9 @@ export class ScreenUtil {
   public layoutHeight: number = 0
 
 
+  private landscapeListener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
+  private portraitListener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: portrait)');
+
   public static getInstance(): ScreenUtil {
     if (!ScreenUtil.instance) {
       ScreenUtil.instance = new ScreenUtil();
@@ -22,6 +26,12 @@ export class ScreenUtil {
   }
 
   initScreenSize(): void {
+    this.landscapeListener.on('change', ()=> {
+      AppStorage.setOrCreate(ScreenUtil.isPortraitKey, false)
+    });
+    this.portraitListener.on('change', ()=> {
+      AppStorage.setOrCreate(ScreenUtil.isPortraitKey, true)
+    })
     window.getLastWindow(getContext(this))
       .then((windowClass: window.Window) => {
         let type = window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR; // 以导航条避让为例
@@ -43,7 +53,6 @@ export class ScreenUtil {
     window.getLastWindow(getContext(this))
       .then((windowClass: window.Window) => {
         windowClass.setPreferredOrientation(orientation);
-        AppStorage.setOrCreate(ScreenUtil.isPortraitKey, orientation == window.Orientation.PORTRAIT || orientation == window.Orientation.PORTRAIT_INVERTED);
       })
       .catch((error: Error) => {
       })

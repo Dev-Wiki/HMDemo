@@ -11,9 +11,7 @@ export struct WebPage {
     this.webViewController = new WebPageController(this.viewModel);
   }
 
-  onTitleBarLeftClick(event: ClickEvent) {
-    this.getUIContext().getRouter().back();
-  }
+  onTitleBarLeftClick?: Function;
 
   onTitleBarRightClick(event: ClickEvent) {
     this.webViewController?.refresh();
