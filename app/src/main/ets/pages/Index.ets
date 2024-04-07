@@ -65,16 +65,31 @@ struct Index {
           left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
         }).width('100%').id("divider") //必须要设置id 否则不显示
 
-        Column({ space: 8 }) {
-          Row({ space: 8 }) {
-            Button("WebPage").type(ButtonType.Capsule).align(Alignment.Center).height(36).width(80).onClick(() => {
-              this.onButtonClicked();
-            })
-          }.width(36);
-          Row().height(36);
-          Row().width(36);
+        Grid() {
+          GridItem() {
+            Button("Layout").type(ButtonType.Capsule).height(32).width(80);
+          }.rowStart(0).rowEnd(0).columnStart(0).columnEnd(0)
+
+          GridItem() {
+            Button("WebPage").type(ButtonType.Capsule).height(32).width(80)
+              .onClick(() => { });
+          }.rowStart(0).rowEnd(0).columnStart(1).columnEnd(1)
+
+          GridItem() {
+            Button("3").type(ButtonType.Capsule).height(32).width(80);
+          }.rowStart(0).rowEnd(0).columnStart(2).columnEnd(2)
+
+          GridItem() {
+            Button("4").type(ButtonType.Capsule).height(32).width(80);
+          }.rowStart(0).rowEnd(0).columnStart(3).columnEnd(3)
+
+          GridItem() {
+            Button("1").type(ButtonType.Capsule).height(32).width(80);
+          }.rowStart(1).rowEnd(1).columnStart(0).columnEnd(0)
         }
-        .width('100%')
+        .width('100%').backgroundColor('#FF005566')
+        .columnsTemplate('1fr 1fr 1fr 1fr').columnsGap(8)
+        .rowsTemplate('repeat(auto-fill, 36)').rowsGap(8)
         .alignRules({
           top: { anchor: "divider", align: VerticalAlign.Bottom },
           left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
