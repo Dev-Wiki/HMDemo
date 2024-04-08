@@ -2,22 +2,7 @@ import { ComponentConst, ScreenUtil, TitleBar } from '@devwiki/common_ui';
 import { TitleBarMenuType } from '@devwiki/common_ui/src/main/ets/component/TitleBar';
 import { WebPage } from './WebPage';
 import { window } from '@kit.ArkUI';
-
-@CustomDialog
-struct WebViewDialog {
-
-  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
-
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebViewDialog({})
-  });
-
-  build() {
-    WebPage({onTitleBarLeftClick: ()=> {
-      this.dialogController.close();
-    }}).height(this.isPortrait ? '95%' : '100%').width(this.isPortrait ? '100%' : '50%')
-  }
-}
+import { WebPageDialog } from './WebPageDialog'
 
 @Entry
 @Component
@@ -26,14 +11,10 @@ struct Index {
   @State title: string = "Home";
 
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebViewDialog(),
+    builder: WebPageDialog(),
     alignment: DialogAlignment.BottomEnd,
     customStyle: true
   })
-
-  aboutToAppear(): void {
-    ScreenUtil.getInstance().initScreenSize();
-  }
 
   onPageShow(): void {
     ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION);
@@ -45,6 +26,7 @@ struct Index {
 
   onButtonClicked() {
     this.dialogController.open();
+    getContext(this).filesDir
 
     // router.pushUrl({
     //   // 两种方式都可以加载Page, 一个是和 resources/base/profile/main_pages.ets中的配置相同
@@ -56,6 +38,9 @@ struct Index {
 
   build() {
     Column() {
+      Row() {}.width('100%')
+      .backgroundColor('#F08080')
+      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP])
       RelativeContainer() {
         TitleBar({
           title: this.title,

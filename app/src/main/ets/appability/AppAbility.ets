@@ -1,10 +1,17 @@
 import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+import { ScreenUtil } from '@devwiki/common_ui/Index';
 
 export default class AppAbility extends UIAbility {
+  constructor() {
+    super();
+    hilog.info(0x0000, 'testTag', '%{public}s', 'Ability constructor');
+  }
+
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    ScreenUtil.getInstance().initScreenSize();
   }
 
   onDestroy(): void {
