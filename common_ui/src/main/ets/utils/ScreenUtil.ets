@@ -15,7 +15,6 @@ export class ScreenUtil {
   public layoutHeight: number = 0
 
 
-  private landscapeListener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: landscape)');
   private portraitListener: mediaquery.MediaQueryListener = mediaquery.matchMediaSync('(orientation: portrait)');
 
   public static getInstance(): ScreenUtil {
@@ -26,11 +25,8 @@ export class ScreenUtil {
   }
 
   initScreenSize(): void {
-    this.landscapeListener.on('change', ()=> {
-      AppStorage.setOrCreate(ScreenUtil.isPortraitKey, false)
-    });
-    this.portraitListener.on('change', ()=> {
-      AppStorage.setOrCreate(ScreenUtil.isPortraitKey, true)
+    this.portraitListener.on('change', (result)=> {
+      AppStorage.setOrCreate(ScreenUtil.isPortraitKey, result.matches)
     })
     window.getLastWindow(getContext(this))
       .then((windowClass: window.Window) => {

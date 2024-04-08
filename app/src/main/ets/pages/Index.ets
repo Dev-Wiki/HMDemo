@@ -6,7 +6,8 @@ import { window } from '@kit.ArkUI';
 @CustomDialog
 struct WebViewDialog {
 
-  showHeight: Length = '50%';
+  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
+
   dialogController: CustomDialogController = new CustomDialogController({
     builder: WebViewDialog({})
   });
@@ -14,7 +15,7 @@ struct WebViewDialog {
   build() {
     WebPage({onTitleBarLeftClick: ()=> {
       this.dialogController.close();
-    }}).height(this.showHeight).width('100%')
+    }}).height(this.isPortrait ? '95%' : '100%').width(this.isPortrait ? '100%' : '50%')
   }
 }
 
@@ -23,10 +24,9 @@ struct WebViewDialog {
 struct Index {
 
   @State title: string = "Home";
-  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
 
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebViewDialog({showHeight: this.isPortrait ? '95%' : '50%'}),
+    builder: WebViewDialog(),
     alignment: DialogAlignment.BottomEnd,
     customStyle: true
   })
@@ -36,7 +36,7 @@ struct Index {
   }
 
   onPageShow(): void {
-    ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION_PORTRAIT);
+    ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION);
   }
 
   onTitleBarLeftClick(_event: ClickEvent) {
