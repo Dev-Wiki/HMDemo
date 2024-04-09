@@ -11,7 +11,6 @@ export default class AppAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    ScreenUtil.getInstance().initScreenSize();
   }
 
   onDestroy(): void {

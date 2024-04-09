@@ -1,10 +1,11 @@
-import { WebView, ComponentConst,  CommonRes, TitleBar, WebViewController } from '@devwiki/common_ui';
+import { WebView, ComponentConst,  CommonRes, TitleBar, WebViewController, ScreenUtil } from '@devwiki/common_ui';
 
 @Entry
 @Component
 export struct WebPage {
 
   @State viewModel: WebPageViewModel = new WebPageViewModel();
+  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
   private webViewController?: WebPageController;
 
   aboutToAppear(): void {
@@ -39,7 +40,7 @@ export struct WebPage {
           left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
         }).width('100%').id("divider")
 
-        WebView({ webUrl: this.viewModel?.webUrl, controller: this.webViewController }).width('100%')
+        WebView({ webUrl: this.isPortrait? this.viewModel?.webUrl : "https://blog.devwiki.net", controller: this.webViewController }).width('100%')
           .alignRules({
             top: { anchor: "divider", align: VerticalAlign.Bottom },
             left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },

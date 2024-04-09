@@ -16,6 +16,10 @@ struct Index {
     customStyle: true
   })
 
+  aboutToAppear(): void {
+    ScreenUtil.getInstance().initScreenSize();
+  }
+
   onPageShow(): void {
     ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION);
   }

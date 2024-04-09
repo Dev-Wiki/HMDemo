@@ -18,6 +18,6 @@ struct LinearLayoutPage {
       Row().width('90%').height('10%').backgroundColor("#ff4455")
       Row().width('90%').height('10%').backgroundColor("#ff4455")
       Row().width('90%').height('10%').backgroundColor("#ff4455")
-    }.height('100%').width('100%')
+    }.width('100%')
   }
 }
