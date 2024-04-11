@@ -1,24 +1,34 @@
 import web_webview from '@ohos.web.webview';
 import { WebScriptCallback, WebScriptFunction } from './WebScript';
 
+export class WebViewParam {
+  webUrl: string = "";
+}
+
 @Component
 export struct WebView {
 
   private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
   controller: WebViewController = new WebViewController();
-  @Prop webUrl: string = "";
+  @Prop @Watch("onParamChanged")param: WebViewParam = new WebViewParam();
+
+  onParamChanged() {
+    if (this.param.webUrl != this.webviewController.getUrl()) {
+      this.controller.loadUrl(this.param.webUrl);
+    }
+  }
 
   aboutToAppear(): void {
     this.controller.setWebviewController(this.webviewController);
   }
 
   build() {
-    Web({ src: this.webUrl, controller: this.webviewController })
+    Web({ src: this.param.webUrl, controller: this.webviewController })
       .javaScriptAccess(true)// 允许使用 js
       .javaScriptProxy({
-        object: null,
-        name: "",
-        methodList: [],
+        object: this.controller,
+        name: WebViewController.JsBridgeName,
+        methodList: WebViewController.JsMethodName,
         controller: this.webviewController
       })
       .onPageEnd(() => { this.controller.onPageEnd(this.webviewController.getTitle()) })
@@ -33,6 +43,9 @@ interface WebViewCallback {
 
 
 export class WebViewController implements WebScriptCallback, WebScriptFunction, WebViewCallback {
+
+  static readonly JsBridgeName = "devwiki";
+  static readonly JsMethodName = [""];
 
   private webviewController?: web_webview.WebviewController
 

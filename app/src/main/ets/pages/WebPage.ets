@@ -1,4 +1,5 @@
 import { WebView, ComponentConst,  CommonRes, TitleBar, WebViewController, ScreenUtil } from '@devwiki/common_ui';
+import { WebViewParam } from '@devwiki/common_ui/src/main/ets/component/web/WebView';
 
 @Entry
 @Component
@@ -40,7 +41,7 @@ export struct WebPage {
           left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
         }).width('100%').id("divider")
 
-        WebView({ webUrl: this.isPortrait? this.viewModel?.webUrl : "https://blog.devwiki.net", controller: this.webViewController }).width('100%')
+        WebView({ param: this.viewModel.webParam, controller: this.webViewController }).width('100%')
           .alignRules({
             top: { anchor: "divider", align: VerticalAlign.Bottom },
             left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
@@ -70,7 +71,11 @@ class WebPageController extends WebViewController {
 }
 
 class WebPageViewModel {
-  webUrl: string = "https://devwiki.net";
+
+  webParam: WebViewParam = {
+    webUrl: "https://devwiki.net"
+  };
+
   pageTitle: ResourceStr = "";
 
   constructor() {

@@ -85,8 +85,8 @@ export struct TitleBar {
                 align: this.leftMenuType != TitleBarMenuType.None ? HorizontalAlign.End : HorizontalAlign.Start
               },
               right: {
-                anchor: this.leftMenuType != TitleBarMenuType.None ? "right_menu" : ComponentConst.ContainerId,
-                align: this.leftMenuType != TitleBarMenuType.None ? HorizontalAlign.Start : HorizontalAlign.End
+                anchor: this.rightMenuType != TitleBarMenuType.None ? "right_menu" : ComponentConst.ContainerId,
+                align: this.rightMenuType != TitleBarMenuType.None ? HorizontalAlign.Start : HorizontalAlign.End
               },
               bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
             })

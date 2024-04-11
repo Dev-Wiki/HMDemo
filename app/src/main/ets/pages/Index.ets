@@ -54,7 +54,7 @@ struct Index {
           .width('100%')
           .alignRules({
             top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
-            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
+            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
           }).id("title_bar"); //必须要设置id 否则不显示
 
         Divider().alignRules({
@@ -84,7 +84,7 @@ struct Index {
             Button("1").type(ButtonType.Capsule).height(32).width(80);
           }.rowStart(1).rowEnd(1).columnStart(0).columnEnd(0)
         }
-        .width('100%').backgroundColor('#FF005566')
+        .width('100%')
         .columnsTemplate('1fr 1fr 1fr 1fr').columnsGap(8)
         .rowsTemplate('repeat(auto-fill, 36)').rowsGap(8)
         .alignRules({
@@ -93,6 +93,6 @@ struct Index {
           bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
         }).id("host_web") //必须要设置id 否则不显示
       }.width('100%').height('100%')
-    }.width('100%').height('100%')
+    }.width('100%').height('100%').backgroundImage($r("app.media.bg_sky")).backgroundImageSize(ImageSize.Cover)
   }
 }
