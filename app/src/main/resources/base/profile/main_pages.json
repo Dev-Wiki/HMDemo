@@ -1,7 +1,7 @@
 {
   "src": [
     "pages/Index",
-    "pages/WebPage",
+    "pages/web/WebPage",
     "pages/layout/LinearLayoutPage"
   ]
 }

@@ -1,9 +1,9 @@
 import { ComponentConst, ScreenUtil, TitleBar } from '@devwiki/common_ui';
 import web_webview from '@ohos.web.webview';
 import { TitleBarMenuType } from '@devwiki/common_ui';
-import { WebPage } from './WebPage';
+import { WebPage } from './web/WebPage';
 import { router, window } from '@kit.ArkUI';
-import { WebPageDialog } from './WebPageDialog'
+import { WebPageDialog } from './web/WebPageDialog'
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
 
