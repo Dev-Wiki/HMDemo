@@ -1,5 +1,4 @@
-import { WebView, ComponentConst,  CommonRes, TitleBar, WebViewController, ScreenUtil } from '@devwiki/common_ui';
-import { WebViewParam } from '@devwiki/common_ui/src/main/ets/component/web/WebView';
+import { WebView, WebViewParam, ComponentConst,  CommonRes, TitleBar, WebViewController, ScreenUtil } from '@devwiki/common_ui';
 
 @Entry
 @Component

@@ -1,8 +1,28 @@
 import { ComponentConst, ScreenUtil, TitleBar } from '@devwiki/common_ui';
-import { TitleBarMenuType } from '@devwiki/common_ui/src/main/ets/component/TitleBar';
+import web_webview from '@ohos.web.webview';
+import { TitleBarMenuType } from '@devwiki/common_ui';
 import { WebPage } from './WebPage';
-import { window } from '@kit.ArkUI';
+import { router, window } from '@kit.ArkUI';
 import { WebPageDialog } from './WebPageDialog'
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
+
+@CustomDialog
+struct WebViewDialog {
+  webUrl: string = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password"
+  private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  dialogController: CustomDialogController;
+  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
+
+  build() {
+    Row() {
+      Web({ src: this.webUrl, controller: this.webviewController })
+        .javaScriptAccess(true)// 允许使用 js
+        .width('100%')
+        .height('100%');
+    }.height(this.isPortrait ? '95%' : '90%').width(this.isPortrait ? '100%' : '50%')
+  }
+}
 
 @Entry
 @Component
@@ -11,7 +31,7 @@ struct Index {
   @State title: string = "Home";
 
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebPageDialog(),
+    builder: WebViewDialog(),
     alignment: DialogAlignment.BottomEnd,
     customStyle: true
   })
@@ -24,75 +44,70 @@ struct Index {
     ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION);
   }
 
-  onTitleBarLeftClick(_event: ClickEvent) {
-    this.getUIContext().getRouter().back();
+  pageTransition() {
+    // 定义页面进入时的效果，无论页面栈发生push还是pop操作均可生效
+    PageTransitionEnter({ type: RouteType.None, duration: 100 }).opacity(1)
+    // 定义页面退出时的效果，无论页面栈发生push还是pop操作均可生效
+    PageTransitionExit({ type: RouteType.None, duration: 100 }).opacity(0)
   }
 
-  onButtonClicked() {
-    this.dialogController.open();
-    getContext(this).filesDir
+  onBackPress(): boolean | void {
+    // 弹出自定义的询问框
+    promptAction.showDialog({
+      message: '确定要退出吗？',
+      buttons: [
+        {
+          text: '取消',
+          color: '#FF0000'
+        },
+        {
+          text: '确认',
+          color: '#0099FF'
+        }
+      ]
+    }).then((result: promptAction.ShowDialogSuccessResponse) => {
+      if (result.index === 0) {
+        // 用户点击了“取消”按钮
+        console.info('User canceled the operation.');
+      } else if (result.index === 1) {
+        // 用户点击了“确认”按钮
+        console.info('User confirmed the operation.');
+        // 调用router.back()方法，返回上一个页面
+        router.back();
+      }
+    }).catch((err: Error) => {
+      let message = (err as BusinessError).message
+      let code = (err as BusinessError).code
+      console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
+    })
+    return true;
+  }
 
-    // router.pushUrl({
-    //   // 两种方式都可以加载Page, 一个是和 resources/base/profile/main_pages.ets中的配置相同
-    //   // 一个是绝对路径
-    //   // url: "pages/WebPage",
-    //   url: PageRouter.WebPage
-    // }, router.RouterMode.Single);
+  async onTitleBarLeftClick(_event: ClickEvent) {
+   this.onBackPress;
   }
 
   build() {
     Column() {
-      Row() {}.width('100%')
-      .backgroundColor('#F08080')
-      .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP])
-      RelativeContainer() {
-        TitleBar({
-          title: this.title,
-          onLeftClicked: this.onTitleBarLeftClick,
-          rightMenuType: TitleBarMenuType.None
-        })
-          .width('100%')
-          .alignRules({
-            top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
-            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
-          }).id("title_bar"); //必须要设置id 否则不显示
+      TitleBar({
+        title: this.title,
+        onLeftClicked: ()=> {this.onBackPress()},
+        rightMenuType: TitleBarMenuType.None
+      }).width('100%')
 
-        Divider().alignRules({
-          top: { anchor: "title_bar", align: VerticalAlign.Bottom },
-          left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
-        }).width('100%').id("divider") //必须要设置id 否则不显示
+      Column() {
+        Row() {
+          Button("WebDialog").width(100).height('100%').type(ButtonType.Normal)
+            .onClick(() => { this.dialogController.open() });
 
-        Grid() {
-          GridItem() {
-            Button("Layout").type(ButtonType.Capsule).height(32).width(80);
-          }.rowStart(0).rowEnd(0).columnStart(0).columnEnd(0)
+          Button("Layout").width(100).height('100%').type(ButtonType.Normal).onClick(() =>{
+            router.pushUrl({url: "pages/layout/LinearLayoutPage"});
+          });
 
-          GridItem() {
-            Button("WebPage").type(ButtonType.Capsule).height(32).width(80)
-              .onClick(() => { this.dialogController.open() });
-          }.rowStart(0).rowEnd(0).columnStart(1).columnEnd(1)
+          Button().width(100).height('100%').type(ButtonType.Normal);
 
-          GridItem() {
-            Button("3").type(ButtonType.Capsule).height(32).width(80);
-          }.rowStart(0).rowEnd(0).columnStart(2).columnEnd(2)
-
-          GridItem() {
-            Button("4").type(ButtonType.Capsule).height(32).width(80);
-          }.rowStart(0).rowEnd(0).columnStart(3).columnEnd(3)
-
-          GridItem() {
-            Button("1").type(ButtonType.Capsule).height(32).width(80);
-          }.rowStart(1).rowEnd(1).columnStart(0).columnEnd(0)
-        }
-        .width('100%')
-        .columnsTemplate('1fr 1fr 1fr 1fr').columnsGap(8)
-        .rowsTemplate('repeat(auto-fill, 36)').rowsGap(8)
-        .alignRules({
-          top: { anchor: "divider", align: VerticalAlign.Bottom },
-          left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
-          bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-        }).id("host_web") //必须要设置id 否则不显示
-      }.width('100%').height('100%')
-    }.width('100%').height('100%').backgroundImage($r("app.media.bg_sky")).backgroundImageSize(ImageSize.Cover)
+        }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
+      }.justifyContent(FlexAlign.Center).width('100%')
+    }.width('100%').height('100%')
   }
 }
