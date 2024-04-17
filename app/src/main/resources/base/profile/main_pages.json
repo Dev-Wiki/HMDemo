@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/web/WebPage",
-    "pages/layout/LinearLayoutPage"
+    "pages/layout/LinearLayoutPage",
+    "pages/animation/CompTransitionPage"
   ]
 }

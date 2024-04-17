@@ -44,6 +44,9 @@ struct Index {
     ScreenUtil.getInstance().setPreferredOrientation(window.Orientation.AUTO_ROTATION);
   }
 
+  /**
+   * 页面的进入 退出动画 router时生效
+   */
   pageTransition() {
     // 定义页面进入时的效果，无论页面栈发生push还是pop操作均可生效
     PageTransitionEnter({ type: RouteType.None, duration: 100 }).opacity(1)
@@ -51,6 +54,10 @@ struct Index {
     PageTransitionExit({ type: RouteType.None, duration: 100 }).opacity(0)
   }
 
+  /**
+   * 拦截手势侧滑返回和标题栏的返回按钮, 增加弹窗提醒。
+   * @returns
+   */
   onBackPress(): boolean | void {
     // 弹出自定义的询问框
     promptAction.showDialog({
@@ -83,15 +90,11 @@ struct Index {
     return true;
   }
 
-  async onTitleBarLeftClick(_event: ClickEvent) {
-   this.onBackPress;
-  }
-
   build() {
     Column() {
       TitleBar({
         title: this.title,
-        onLeftClicked: ()=> {this.onBackPress()},
+        onLeftClicked: ()=> { this.onBackPress() },
         rightMenuType: TitleBarMenuType.None
       }).width('100%')
 
@@ -104,7 +107,9 @@ struct Index {
             router.pushUrl({url: "pages/layout/LinearLayoutPage"});
           });
 
-          Button().width(100).height('100%').type(ButtonType.Normal);
+          Button("Animation").width(100).height('100%').type(ButtonType.Normal).onClick(() =>{
+            router.pushUrl({url: "pages/animation/CompTransitionPage"});
+          });
 
         }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
       }.justifyContent(FlexAlign.Center).width('100%')
