@@ -6,6 +6,7 @@ import { router, window } from '@kit.ArkUI';
 import { WebPageDialog } from './web/WebPageDialog'
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
+import { Log } from '../utils/Log';
 
 @CustomDialog
 struct WebViewDialog {
@@ -75,17 +76,17 @@ struct Index {
     }).then((result: promptAction.ShowDialogSuccessResponse) => {
       if (result.index === 0) {
         // 用户点击了“取消”按钮
-        console.info('User canceled the operation.');
+        Log.i('User canceled the operation.');
       } else if (result.index === 1) {
         // 用户点击了“确认”按钮
-        console.info('User confirmed the operation.');
+        Log.i('User confirmed the operation.');
         // 调用router.back()方法，返回上一个页面
         router.back();
       }
     }).catch((err: Error) => {
       let message = (err as BusinessError).message
       let code = (err as BusinessError).code
-      console.error(`Invoke showDialog failed, code is ${code}, message is ${message}`);
+      Log.i(`Invoke showDialog failed, code is ${code}, message is ${message}`);
     })
     return true;
   }
