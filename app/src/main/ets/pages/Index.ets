@@ -7,6 +7,7 @@ import { WebPageDialog } from './web/WebPageDialog'
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
 import { Log } from '../utils/Log';
+import { DemoLocalStorage } from '../utils/LocalStorage';
 
 @CustomDialog
 struct WebViewDialog {
@@ -39,6 +40,7 @@ struct Index {
 
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();
+    DemoLocalStorage.getInstance().init(getContext(this).getApplicationContext());
   }
 
   onPageShow(): void {
