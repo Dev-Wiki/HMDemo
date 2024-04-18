@@ -3,24 +3,24 @@ import { Context } from '@kit.AbilityKit';
 import dataPreferences from '@ohos.data.preferences';
 import { Log } from './Log';
 
-export class DemoLocalStorageKey {
+export class BaseLocalStorageKey {
   static readonly KEY_SERVER_CONFIG = "key_config";
 }
 
-export class DemoLocalStorage {
+export class BaseLocalStorage {
 
-  private static instance: DemoLocalStorage;
+  private static instance: BaseLocalStorage;
   private static lock: boolean = false;
   private static readonly XY_DP_Name = "LocalData";
-  static getInstance(): DemoLocalStorage {
-    if (!DemoLocalStorage.instance) {
-      if (!DemoLocalStorage.lock) {
-        DemoLocalStorage.lock = true;
-        DemoLocalStorage.instance = new DemoLocalStorage();
-        DemoLocalStorage.lock = false;
+  static getInstance(): BaseLocalStorage {
+    if (!BaseLocalStorage.instance) {
+      if (!BaseLocalStorage.lock) {
+        BaseLocalStorage.lock = true;
+        BaseLocalStorage.instance = new BaseLocalStorage();
+        BaseLocalStorage.lock = false;
       }
     }
-    return DemoLocalStorage.instance;
+    return BaseLocalStorage.instance;
   }
 
   private context: Context | null = null;
@@ -31,7 +31,7 @@ export class DemoLocalStorage {
   public init(context: Context): void {
     if (!this.context) {
       this.context = context.getApplicationContext();
-      let options: dataPreferences.Options = { name: DemoLocalStorage.XY_DP_Name };
+      let options: dataPreferences.Options = { name: BaseLocalStorage.XY_DP_Name };
       this.preferences = dataPreferences.getPreferencesSync(this.context, options);
     } else {
       Log.i("LocalStorage is already init.")

@@ -1,4 +1,4 @@
-import { CommonMediaName, CommonRes, TitleBar, TitleBarMenuType } from '@devwiki/common_ui/Index'
+import { CommonRes, TitleBar, TitleBarMenuType } from '@devwiki/common_ui'
 import { curves, router } from '@kit.ArkUI';
 
 

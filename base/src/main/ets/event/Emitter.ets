@@ -4,12 +4,12 @@ export interface EmitterItem {
   listener: Function
 }
 
-type XYEmitterAllType = string | object | boolean | number | Object | Number | BigInt;
+type EmitterAllType = string | object | boolean | number | Object | Number | BigInt;
 
 export class Emitter {
   private static instance: Emitter;
   private static events: Map<string, EmitterItem[]> = new Map
-  private static viscosityData: Map<string, XYEmitterAllType[]> = new Map
+  private static viscosityData: Map<string, EmitterAllType[]> = new Map
 
   public static getInstance(): Emitter {
     if (!Emitter.instance) {
@@ -87,7 +87,7 @@ export class Emitter {
    */
   public emmitViscosity<T>(key: string, ...args: T[]) {
     this.emmit(key, ...args);
-    Emitter.viscosityData.set(key, args as XYEmitterAllType[]);
+    Emitter.viscosityData.set(key, args as EmitterAllType[]);
   }
 
   /**

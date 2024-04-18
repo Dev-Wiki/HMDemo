@@ -3,6 +3,7 @@
 本项目模块分为:
 - app: 主入口模块
 - common_ui : 通用UI动态共享库模块
+- base: 最底层的依赖库, 包含最通用的代码封装.
 
 
 ## app模块
@@ -19,8 +20,8 @@
 - 自定标题栏: [TitleBar](common_ui/src/main/ets/component/TitleBar.ets)
 
 事件相关:
-- 事件发射器 [Emitter](common_ui/src/main/ets/event/Emitter.ets)
+- 事件发射器 [Emitter](base/src/main/ets/event/Emitter.ets)
 
 工具类:
 - 公用资源调用类[CommonRes](common_ui/src/main/ets/utils/CommonRes.ets)
-- 屏幕相关[ScreenUtil](common_ui/src/main/ets/utils/ScreenUtil.ets)
+- 屏幕相关[ScreenUtil](base/src/main/ets/utils/ScreenUtil.ets)

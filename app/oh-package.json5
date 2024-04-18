@@ -6,7 +6,8 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@devwiki/common_ui": "file:../common_ui"
+    "@devwiki/common_ui": "file:../common_ui",
+    "@devwiki/base": "file:../base"
   }
 }
 

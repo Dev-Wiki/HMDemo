@@ -1,4 +1,4 @@
-import { ScreenUtil } from '@devwiki/common_ui/Index';
+import { ScreenUtil } from '@devwiki/base';
 import { WebPage } from './WebPage';
 
 @CustomDialog

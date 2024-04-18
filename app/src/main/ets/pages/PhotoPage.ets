@@ -2,7 +2,6 @@ import { TitleBar } from '@devwiki/common_ui/Index';
 import picker from '@ohos.file.picker';
 import { BusinessError } from '@kit.BasicServicesKit';
 import fs, { ReadOptions } from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
 import buffer from '@ohos.buffer';
 
 @Entry

@@ -1,4 +1,5 @@
-import { WebView, WebViewParam, ComponentConst,  CommonRes, TitleBar, WebViewController, ScreenUtil } from '@devwiki/common_ui/Index';
+import { WebView, WebViewParam, ComponentConst,  CommonRes, TitleBar, WebViewController } from '@devwiki/common_ui/Index';
+import { ScreenUtil } from '@devwiki/base'
 
 @Entry
 @Component

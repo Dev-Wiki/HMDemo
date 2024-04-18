@@ -1,5 +1,6 @@
 import window from '@ohos.window';
 import mediaquery from '@ohos.mediaquery';
+import { Log } from './Log';
 
 export class ScreenUtil {
   // TODO: 工具待抽离， key统一定义
@@ -102,5 +103,13 @@ export class ScreenUtil {
       })
       .catch((error: Error) => {
       })
+  }
+
+  setWindowKeepScreenOn(isKeep: boolean) {
+    Log.i(`setWindowKeepScreenOn:${isKeep}`)
+    window.getLastWindow(getContext(this))
+      .then((windowClass: window.Window) => {
+        windowClass.setWindowKeepScreenOn(isKeep);
+      });
   }
 }

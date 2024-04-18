@@ -1,20 +1,18 @@
-import { ComponentConst, ScreenUtil, TitleBar } from '@devwiki/common_ui';
+import { TitleBar } from '@devwiki/common_ui';
 import web_webview from '@ohos.web.webview';
 import { TitleBarMenuType } from '@devwiki/common_ui';
-import { WebPage } from './web/WebPage';
 import { router, window } from '@kit.ArkUI';
-import { WebPageDialog } from './web/WebPageDialog'
 import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
-import { Log } from '../utils/Log';
-import { DemoLocalStorage } from '../utils/LocalStorage';
+import { Log } from '@devwiki/base';
+import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 
 @CustomDialog
 struct WebViewDialog {
   webUrl: string = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password"
   private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
   dialogController: CustomDialogController;
-  @StorageLink(ScreenUtil.isPortraitKey)isPortrait: boolean = true;
+  @StorageLink(ScreenUtil.isPortraitKey) isPortrait: boolean = true;
 
   build() {
     Row() {
@@ -29,9 +27,7 @@ struct WebViewDialog {
 @Entry
 @Component
 struct Index {
-
   @State title: string = "Home";
-
   dialogController: CustomDialogController = new CustomDialogController({
     builder: WebViewDialog(),
     alignment: DialogAlignment.BottomEnd,
@@ -40,7 +36,7 @@ struct Index {
 
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();
-    DemoLocalStorage.getInstance().init(getContext(this).getApplicationContext());
+    BaseLocalStorage.getInstance().init(getContext(this));
   }
 
   onPageShow(): void {
@@ -97,21 +93,25 @@ struct Index {
     Column() {
       TitleBar({
         title: this.title,
-        onLeftClicked: ()=> { this.onBackPress() },
+        onLeftClicked: () => {
+          this.onBackPress()
+        },
         rightMenuType: TitleBarMenuType.None
       }).width('100%')
 
       Column() {
         Row() {
           Button("WebDialog").width(100).height('100%').type(ButtonType.Normal)
-            .onClick(() => { this.dialogController.open() });
+            .onClick(async () => {
+              this.dialogController.open()
+            });
 
-          Button("Layout").width(100).height('100%').type(ButtonType.Normal).onClick(() =>{
-            router.pushUrl({url: "pages/layout/LinearLayoutPage"});
+          Button("Layout").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
+            router.pushUrl({ url: "pages/layout/LinearLayoutPage" });
           });
 
-          Button("Animation").width(100).height('100%').type(ButtonType.Normal).onClick(() =>{
-            router.pushUrl({url: "pages/animation/CompTransitionPage"});
+          Button("Animation").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
+            router.pushUrl({ url: "pages/animation/CompTransitionPage" });
           });
 
         }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
