@@ -99,7 +99,7 @@ struct Index {
         rightMenuType: TitleBarMenuType.None
       }).width('100%')
 
-      Column() {
+      Column({space: 8}) {
         Row() {
           Button("WebDialog").width(100).height('100%').type(ButtonType.Normal)
             .onClick(async () => {
@@ -113,9 +113,15 @@ struct Index {
           Button("Animation").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
             router.pushUrl({ url: "pages/animation/CompTransitionPage" });
           });
+        }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
+
+        Row() {
+          Button("AVPlayer").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
+            router.pushUrl({ url: "pages/media/AVPlayerPage" });
+          });
 
         }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
-      }.justifyContent(FlexAlign.Center).width('100%')
+      }.width('100%')
     }.width('100%').height('100%')
   }
 }

@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/web/WebPage",
     "pages/layout/LinearLayoutPage",
-    "pages/animation/CompTransitionPage"
+    "pages/animation/CompTransitionPage",
+    "pages/media/AVPlayerPage"
   ]
 }
