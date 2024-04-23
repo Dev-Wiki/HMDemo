@@ -1,3 +1,9 @@
+本项目代码地址为: [Harmony/HM4Demo - HM4Demo - DevWiki Gitea](https://git.devwiki.net/Harmony/HM4Demo)
+
+提交时会同步更新至:
+- github: [Dev-Wiki/HM4Demo](https://github.com/Dev-Wiki/HM4Demo)
+- gitee : [DevWiki/HM4Demo](https://gitee.com/devwiki/HM4Demo)
+
 # 项目概要
 
 本项目模块分为:
