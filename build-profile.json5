@@ -79,6 +79,18 @@
           ]
         }
       ]
+    },
+    {
+      "name": "native_lib",
+      "srcPath": "./native_lib",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
     }
   ]
 }
