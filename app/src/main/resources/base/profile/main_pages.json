@@ -6,6 +6,7 @@
     "pages/layout/LinearLayoutPage",
     "pages/layout/RelativeContainerPage",
     "pages/animation/CompTransitionPage",
-    "pages/media/AVPlayerPage"
+    "pages/media/AVPlayerPage",
+    "pages/system/SchemePage"
   ]
 }

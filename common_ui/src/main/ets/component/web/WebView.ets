@@ -13,7 +13,8 @@ export struct WebView {
   @Prop @Watch("onParamChanged")param: WebViewParam = new WebViewParam();
 
   onParamChanged() {
-    if (this.param.webUrl != this.webviewController.getUrl()) {
+    if (this.webviewController.getUrl() && this.param.webUrl != this.webviewController.getUrl()) {
+      let a = this.webviewController.getUrl();
       this.controller.loadUrl(this.param.webUrl);
     }
   }
@@ -58,6 +59,22 @@ export class WebViewController implements WebScriptCallback, WebScriptFunction, 
 
   refresh() {
     this.webviewController?.refresh();
+  }
+
+  accessBackward(): boolean {
+    return this.webviewController?.accessBackward() ?? false;
+  }
+
+  backward() {
+    return this.webviewController?.backward();
+  }
+
+  accessForward(): boolean {
+    return this.webviewController?.accessForward() ?? false;
+  }
+
+  forward() {
+    return this.webviewController?.forward();
   }
 
   getCurrentUrl(): string {

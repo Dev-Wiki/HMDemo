@@ -7,6 +7,7 @@ import { BusinessError } from '@ohos.base';
 import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
+import { common, Want } from '@kit.AbilityKit';
 
 
 @Entry
@@ -42,6 +43,13 @@ struct Index {
       name: 'Multimedia',
       items: [
         { name: 'AVPlayer', page: 'pages/media/AVPlayerPage' },
+      ]
+    },
+    //系统能力
+    {
+      name: 'System',
+      items: [
+        {name: "Scheme", page: 'pages/system/SchemePage'}
       ]
     }
   ];

@@ -18,6 +18,14 @@ export struct WebPage {
   onTitleBarRightClick(event: ClickEvent) {
     this.webViewController?.refresh();
   }
+  
+  onBackPress(): boolean | void {
+    if (this.webViewController?.accessBackward()) {
+      this.webViewController?.backward();
+      return false;
+    }
+    return true;
+  }
 
   build() {
     Column() {
