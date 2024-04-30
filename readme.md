@@ -6,6 +6,14 @@
 
 # 项目概要
 
+## 重要说明
+
+本项目为 HM4项目,其中:
+- compileSdkVersion : 4.1.0(11)
+- compatibleSdkVersion: 4.0.0(10)
+
+请使用API对应的DevEco进行编译.
+
 本项目模块分为:
 - app: 主入口模块
 - common_ui : 通用UI动态共享库模块
