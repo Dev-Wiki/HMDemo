@@ -22,7 +22,8 @@ export struct WebPage {
   onBackPress(): boolean | void {
     if (this.webViewController?.accessBackward()) {
       this.webViewController?.backward();
-      return false;
+    } else {
+      this.getUIContext().getRouter().back();
     }
     return true;
   }
