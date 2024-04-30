@@ -8,22 +8,6 @@ import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
 
-@CustomDialog
-struct WebViewDialog {
-  webUrl: string = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password"
-  private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
-  dialogController: CustomDialogController;
-  @StorageLink(ScreenUtil.isPortraitKey) isPortrait: boolean = true;
-
-  build() {
-    Row() {
-      Web({ src: this.webUrl, controller: this.webviewController })
-        .javaScriptAccess(true)// 允许使用 js
-        .width('100%')
-        .height('100%');
-    }.height(this.isPortrait ? '95%' : '90%').width(this.isPortrait ? '100%' : '50%')
-  }
-}
 
 @Entry
 @Component
@@ -61,13 +45,6 @@ struct Index {
       ]
     }
   ];
-
-
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: WebViewDialog(),
-    alignment: DialogAlignment.BottomEnd,
-    customStyle: true
-  })
 
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();

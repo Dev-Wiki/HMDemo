@@ -24,7 +24,13 @@ export struct WebPage {
       RelativeContainer() {
         TitleBar({
           title: this.viewModel.pageTitle,
-          onLeftClicked: this.onTitleBarLeftClick,
+          onLeftClicked: () => {
+            if (this.onTitleBarLeftClick) {
+              this.onTitleBarLeftClick();
+            } else {
+              this.getUIContext().getRouter().back()
+            }
+          },
           rightIcon: CommonRes.getIconRefresh(),
           // 必须这么写 onTitleBarRightClick内部的代码才执行,
           // 直接 onRightClicked: this.onTitleBarRightClick 这么写, 代码不执行
@@ -76,7 +82,7 @@ class WebPageViewModel {
     webUrl: "https://devwiki.net"
   };
 
-  pageTitle: ResourceStr = "";
+  pageTitle: ResourceStr = "WebPage";
 
   constructor() {
   }

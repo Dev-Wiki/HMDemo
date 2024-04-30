@@ -30,7 +30,7 @@ export struct TitleBar {
 
   @Prop rightText: ResourceStr = "";
   @Prop rightIcon: Resource = $r("app.media.ic_close");
-  @Prop rightMenuType: TitleBarMenuType = TitleBarMenuType.Icon;
+  @Prop rightMenuType: TitleBarMenuType = TitleBarMenuType.None;
 
   @Prop titleTextAlign: TextAlign = TextAlign.Start;
   @Prop titleVisible: Visibility = Visibility.Visible;

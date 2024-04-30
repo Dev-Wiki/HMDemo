@@ -1,3 +1,4 @@
+import { TitleBar } from '@devwiki/common_ui/Index';
 
 import media from '@ohos.multimedia.media';
 import Prompt from '@system.prompt';
@@ -58,11 +59,18 @@ struct  AVPlayerPage{
 
   build() {
     Column(){
-      Button('播放').height(48).width(96)
+      TitleBar({
+        title: "AVPlayer",
+        onLeftClicked: () => {
+          this.getUIContext().getRouter().back();
+        }
+      });
+
+      Button('播放').height(48).width(96).margin({top: 100})
         .onClick(()=>{
           this.playMusic();
         })
-    }.justifyContent(FlexAlign.Center).align(Alignment.Center).width('100%').height('100%')
+    }.align(Alignment.Center).width('100%').height('100%')
   }
 
   async playMusic() {
