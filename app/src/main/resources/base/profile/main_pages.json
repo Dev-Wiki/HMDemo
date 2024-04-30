@@ -2,7 +2,9 @@
   "src": [
     "pages/Index",
     "pages/web/WebPage",
+    "pages/web/WebDialogPage",
     "pages/layout/LinearLayoutPage",
+    "pages/layout/RelativeContainerPage",
     "pages/animation/CompTransitionPage",
     "pages/media/AVPlayerPage"
   ]

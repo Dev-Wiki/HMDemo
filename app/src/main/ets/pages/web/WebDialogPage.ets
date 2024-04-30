@@ -13,3 +13,11 @@ export struct WebPageDialog {
     }}).height(this.isPortrait ? '95%' : '90%').width(this.isPortrait ? '100%' : '50%')
   }
 }
+
+@Entry
+@Component
+export struct WebDialogPage {
+
+  build() {
+  }
+}

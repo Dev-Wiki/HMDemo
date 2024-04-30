@@ -1,5 +1,8 @@
 
 export class CommonRes {
+  static readonly IC_CHEVRON_LEFT = "ic_chevron_left";
+  static readonly IC_CHEVRON_RIGHT = "ic_chevron_right";
+
   private constructor() {
   }
 
@@ -7,8 +10,12 @@ export class CommonRes {
     return $r("app.media.ic_refresh");
   }
 
-  public static getIconBack(): Resource {
+  public static getIconChevronLeft(): Resource {
     return $r("app.media.ic_chevron_left");
+  }
+
+  public static getIconChevronRight(): Resource {
+    return $r("app.media.ic_chevron_right");
   }
 
   public static getIconClose(): Resource {

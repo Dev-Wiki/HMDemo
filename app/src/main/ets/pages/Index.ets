@@ -1,4 +1,4 @@
-import { TitleBar } from '@devwiki/common_ui';
+import { CommonRes, TitleBar } from '@devwiki/common_ui';
 import web_webview from '@ohos.web.webview';
 import { TitleBarMenuType } from '@devwiki/common_ui';
 import { router, window } from '@kit.ArkUI';
@@ -6,6 +6,7 @@ import promptAction from '@ohos.promptAction';
 import { BusinessError } from '@ohos.base';
 import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
+import { HomeItem, HomeItemGroup } from '../model/Home';
 
 @CustomDialog
 struct WebViewDialog {
@@ -28,6 +29,40 @@ struct WebViewDialog {
 @Component
 struct Index {
   @State title: string = "Home";
+  readonly itemGroups: HomeItemGroup[] = [
+    //Web部分
+    {
+      name: 'Web',
+      items: [
+        { name: 'WebPage', page: 'pages/web/WebPage' },
+        { name: 'WebDialogPage', page: 'pages/web/WebDialogPage' }
+      ]
+    },
+    // 布局
+    {
+      name: 'Layout',
+      items: [
+        { name: 'LinearLayout', page: 'pages/layout/LinearLayoutPage' },
+        { name: 'RelativeContainer', page: 'pages/layout/RelativeContainerPage' },
+      ]
+    },
+    //动画
+    {
+      name: "Animation",
+      items: [
+        { name: 'CompTransition', page: 'pages/animation/CompTransitionPage'},
+      ]
+    },
+    // 多媒体
+    {
+      name: 'Multimedia',
+      items: [
+        { name: 'AVPlayer', page: 'pages/media/AVPlayerPage' },
+      ]
+    }
+  ];
+
+
   dialogController: CustomDialogController = new CustomDialogController({
     builder: WebViewDialog(),
     alignment: DialogAlignment.BottomEnd,
@@ -89,6 +124,33 @@ struct Index {
     return true;
   }
 
+  @Builder
+  groupBuilder(group: HomeItemGroup) {
+    Row(){
+      if (group.icon) {
+        Image(group.icon).width(24).height(24).margin({right: 8});
+      }
+      Text(group.name);
+    }.height(32).width('100%').padding({left: 8, right: 8})
+    .backgroundColor('#e0e0e0').alignItems(VerticalAlign.Center)
+  }
+
+  @Builder
+  itemBuilder(item: HomeItem) {
+    Column() {
+      Row() {
+        Text(item.name);
+        Image(CommonRes.getImageRes(CommonRes.IC_CHEVRON_RIGHT)).width(32).height(32);
+      }.width('100%').height(48).justifyContent(FlexAlign.SpaceBetween).alignItems(VerticalAlign.Center)
+      .padding({left: 16, right: 16})
+      Divider().margin({ top: 2 });
+    }.onClick(() => {
+      if (item.page) {
+        this.getUIContext().getRouter().pushUrl({url: item.page })
+      }
+    })
+  }
+
   build() {
     Column() {
       TitleBar({
@@ -99,29 +161,15 @@ struct Index {
         rightMenuType: TitleBarMenuType.None
       }).width('100%')
 
-      Column({space: 8}) {
-        Row() {
-          Button("WebDialog").width(100).height('100%').type(ButtonType.Normal)
-            .onClick(async () => {
-              this.dialogController.open()
-            });
-
-          Button("Layout").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
-            router.pushUrl({ url: "pages/layout/LinearLayoutPage" });
-          });
-
-          Button("Animation").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
-            router.pushUrl({ url: "pages/animation/CompTransitionPage" });
-          });
-        }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
-
-        Row() {
-          Button("AVPlayer").width(100).height('100%').type(ButtonType.Normal).onClick(() => {
-            router.pushUrl({ url: "pages/media/AVPlayerPage" });
-          });
-
-        }.width('100%').height(48).justifyContent(FlexAlign.SpaceEvenly)
-      }.width('100%')
+      List(){
+        ForEach(this.itemGroups, (group: HomeItemGroup) => {
+          ListItemGroup({header: this.groupBuilder(group)}) {
+            ForEach(group.items, (item: HomeItem) => {
+              this.itemBuilder(item);
+            })
+          }
+        })
+      }.width('100%').height('100%').margin({top: 16})
     }.width('100%').height('100%')
   }
 }
