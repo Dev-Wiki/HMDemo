@@ -4,7 +4,7 @@ import { Log } from './Log';
 
 export class ScreenUtil {
   // TODO: 工具待抽离， key统一定义
-  static readonly isPortraitKey: string = "xy_screen_is_portrait";
+  static readonly isPortraitKey: string = "screen_is_portrait";
   private static instance: ScreenUtil;
   public width: number = 0
   public height: number = 0
