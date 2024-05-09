@@ -17,10 +17,11 @@ struct Index {
   readonly itemGroups: HomeItemGroup[] = [
     //Web部分
     {
-      name: 'Web',
+      name: 'Net',
       items: [
         { name: 'WebPage', page: 'pages/web/WebPage' },
-        { name: 'WebDialogPage', page: 'pages/web/WebDialogPage' }
+        { name: 'WebDialogPage', page: 'pages/web/WebDialogPage' },
+        { name: "TcpSocket", page: 'pages/net/TcpSocketPage'}
       ]
     },
     // 布局

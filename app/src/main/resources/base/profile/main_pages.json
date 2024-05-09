@@ -7,6 +7,7 @@
     "pages/layout/RelativeContainerPage",
     "pages/animation/CompTransitionPage",
     "pages/media/AVPlayerPage",
-    "pages/system/SchemePage"
+    "pages/system/SchemePage",
+    "pages/net/TcpSocketPage"
   ]
 }

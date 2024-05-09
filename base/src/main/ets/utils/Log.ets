@@ -3,7 +3,7 @@ import hilog from '@ohos.hilog';
 
 let domain: number = 0xFF00;
 let prefix: string = 'HM4Demo';
-let format: string = `%{public}s, %{public}s`;
+let format: string = `%{public}s`;
 
 export class Log {
 
