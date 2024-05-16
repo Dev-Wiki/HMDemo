@@ -30,8 +30,16 @@ export class CommonRes {
     return $r("app.media.ic_eye_off");
   }
 
-  public static getImageRes(resName: string): Resource {
+  public static getImage(resName: string): Resource {
     return $r(`app.media.${resName}`);
+  }
+
+  public static getString(name: string): ResourceStr {
+    return $r(`app.string.${name}`);
+  }
+
+  public static getFloat(name: string): ResourceStr {
+    return $r(`app.float.${name}`)
   }
 }
 

@@ -3,6 +3,10 @@
     {
       "name": "white",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "title_text_grey",
+      "value": "#FF393946"
     }
   ]
 }

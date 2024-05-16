@@ -5,6 +5,7 @@
     "pages/web/WebDialogPage",
     "pages/layout/LinearLayoutPage",
     "pages/layout/RelativeContainerPage",
+    "pages/component/InputPage",
     "pages/animation/CompTransitionPage",
     "pages/media/AVPlayerPage",
     "pages/system/SchemePage",

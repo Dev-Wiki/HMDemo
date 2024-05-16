@@ -24,6 +24,12 @@ struct Index {
         { name: "TcpSocket", page: 'pages/net/TcpSocketPage'}
       ]
     },
+    {
+      name: 'Component',
+      items: [
+        {name: 'InputPage', page: 'pages/component/InputPage'}
+      ]
+    },
     // 布局
     {
       name: 'Layout',
@@ -126,7 +132,7 @@ struct Index {
     Column() {
       Row() {
         Text(item.name);
-        Image(CommonRes.getImageRes(CommonRes.IC_CHEVRON_RIGHT)).width(32).height(32);
+        Image(CommonRes.getImage(CommonRes.IC_CHEVRON_RIGHT)).width(32).height(32);
       }.width('100%').height(48).justifyContent(FlexAlign.SpaceBetween).alignItems(VerticalAlign.Center)
       .padding({left: 16, right: 16})
       Divider().margin({ top: 2 });
