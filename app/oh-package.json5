@@ -7,7 +7,9 @@
   "license": "",
   "dependencies": {
     "@devwiki/common_ui": "file:../common_ui",
-    "@devwiki/base": "file:../base"
-  }
+    "@devwiki/base": "file:../base",
+    "@ohos/axios": "^2.2.0"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
 }
-

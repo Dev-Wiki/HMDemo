@@ -9,6 +9,7 @@
     "pages/animation/CompTransitionPage",
     "pages/media/AVPlayerPage",
     "pages/system/SchemePage",
-    "pages/net/TcpSocketPage"
+    "pages/net/TcpSocketPage",
+    "pages/net/RestAPIPage"
   ]
 }

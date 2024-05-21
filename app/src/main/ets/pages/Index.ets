@@ -21,7 +21,8 @@ struct Index {
       items: [
         { name: 'WebPage', page: 'pages/web/WebPage' },
         { name: 'WebDialogPage', page: 'pages/web/WebDialogPage' },
-        { name: "TcpSocket", page: 'pages/net/TcpSocketPage'}
+        { name: "TcpSocket", page: 'pages/net/TcpSocketPage'},
+        { name: "RestAPI", page: 'pages/net/RestAPIPage'}
       ]
     },
     {
