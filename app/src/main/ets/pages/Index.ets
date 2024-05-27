@@ -57,7 +57,8 @@ struct Index {
     {
       name: 'System',
       items: [
-        {name: "Scheme", page: 'pages/system/SchemePage'}
+        {name: "Scheme", page: 'pages/system/SchemePage'},
+        {name: "MVVM", page: 'pages/mvvm/HomePage'}
       ]
     }
   ];
@@ -162,7 +163,7 @@ struct Index {
             })
           }
         })
-      }.width('100%').height('100%').margin({top: 16})
+      }.width('100%').margin({top: 16, bottom: 48})
     }.width('100%').height('100%')
   }
 }
