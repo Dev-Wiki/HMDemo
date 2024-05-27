@@ -8,13 +8,17 @@ export struct RestAPIPage {
   @State viewModel: RestAPIViewModel = new RestAPIViewModel();
 
   build() {
-    Column() {
-      Button("Get").onClick(() =>{
-        this.viewModel.getServerVersion();
-      })
+    Row() {
+      Flex({
+        justifyContent: FlexAlign.SpaceBetween
+      }) {
+        Button("Get").onClick(() =>{
+          this.viewModel.getServerVersion();
+        })
 
-      Text(this.viewModel.serverVersion);
-    }.justifyContent(FlexAlign.Start).alignItems(HorizontalAlign.Center)
+        Text(this.viewModel.serverVersion).backgroundColor(Color.Blue).flexGrow(1);
+      }
+    }.justifyContent(FlexAlign.Start).alignItems(VerticalAlign.Center).width('80%').backgroundColor(Color.Green)
   }
 }
 
@@ -23,8 +27,8 @@ class RestAPIViewModel {
 
   serverVersion: string = '123'
 
-  getServerVersion() {
-    axios({
+  async getServerVersion() {
+    await axios({
       method: "post",
       url: 'https://music.devwiki.net/rest/ping.view?v=1.16.1&c=myapp&f=json'
     }).then((response: AxiosResponse) => {

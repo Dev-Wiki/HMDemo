@@ -24,6 +24,8 @@
 
 ## app模块
 
+- [MVVM架构](/app/src/main/ets/pages/mvvm/HomePage.ets)
+
 - [web功能](app/src/main/ets/pages/web)
 - [布局学习](app/src/main/ets/pages/layout)
   - [线性布局](app/src/main/ets/pages/layout/LinearLayoutPage.ets)

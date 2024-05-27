@@ -1,15 +1,29 @@
 {
   "src": [
     "pages/Index",
-    "pages/web/WebPage",
-    "pages/web/WebDialogPage",
+
+    "pages/animation/CompTransitionPage",
+
+    "pages/component/InputPage",
+    "pages/component/SVGPage",
+    "pages/component/TextPage",
+
     "pages/layout/LinearLayoutPage",
     "pages/layout/RelativeContainerPage",
-    "pages/component/InputPage",
-    "pages/animation/CompTransitionPage",
+
     "pages/media/AVPlayerPage",
-    "pages/system/SchemePage",
+    "pages/media/AudioPlayerPage",
+    "pages/media/PhotoPage",
+
+    "pages/mvvm/HomePage",
+
     "pages/net/TcpSocketPage",
-    "pages/net/RestAPIPage"
+    "pages/net/RestAPIPage",
+
+    "pages/system/SchemePage",
+    "pages/system/TimerPage",
+
+    "pages/web/WebPage",
+    "pages/web/WebDialogPage"
   ]
 }
