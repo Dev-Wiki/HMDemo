@@ -2,12 +2,7 @@
 #define CPPLIB_LIBRARY_H
 
 #include <string>
-
-struct CalculateInfo {
-    std::string name;
-    std::string versionName;
-    int versionCode;
-};
+#include "CalculateInfo.h"
 
 class Calculate {
 public:

@@ -20,7 +20,10 @@ ELSE()
 ENDIF()
 
 # 添加共享库
-add_library(${PROJECT_NAME} ${STATIC_OR_SHARED} library.cpp)
+add_library(${PROJECT_NAME} ${STATIC_OR_SHARED}
+    Calculate.cpp
+    CalculateInfo.h
+)
 
 # 解析配置
 if(EX_PLATFORM EQUAL 32)

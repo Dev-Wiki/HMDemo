@@ -7,7 +7,8 @@
 #ifndef HM4DEMO_CALCULATOR_H
 #define HM4DEMO_CALCULATOR_H
 
-#include "library.h"
+#include "CalculateInfo.h"
+#include "Calculate.h"
 #include "js_native_api.h"
 
 class CalculateAdaptor {

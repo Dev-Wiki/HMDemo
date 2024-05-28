@@ -1,1 +1,1 @@
-export {} from './src/main/cpp/types/libnatvie_lib/index'
+export { CalculateAdapter } from './src/main/cpp/types/libnatvie_lib/index'

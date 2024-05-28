@@ -1,5 +1,5 @@
 import { CalculateAdapter } from 'native_lib.so'
-import { CalculateInfo } from './CalculateDefine'
+import { CalculateInfo } from './CalculateInfo'
 
 export class Calculator {
 

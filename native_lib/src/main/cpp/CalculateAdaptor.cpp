@@ -5,7 +5,8 @@
 // please include "napi/native_api.h".
 
 #include "CalculateAdaptor.h"
-#include "library.h"
+#include "Calculate.h"
+#include "CalculateInfo.h"
 
 CalculateAdaptor::CalculateAdaptor() { 
     _calculate = &Calculate::getInstance(); 
