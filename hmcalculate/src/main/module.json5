@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "native_lib",
+    "name": "hmcalculate",
     "type": "shared",
     "description": "$string:shared_desc",
     "deviceTypes": [

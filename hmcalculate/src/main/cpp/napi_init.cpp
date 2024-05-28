@@ -18,9 +18,6 @@ napi_value JS_Constructor(napi_env env, napi_callback_info info) {
     return thisVar;
 }
 
-EXTERN_C_START
-
-
 napi_value Init(napi_env env, napi_value exports)
 {
     const char className[] = "CalculateAdaptor";
@@ -35,7 +32,6 @@ napi_value Init(napi_env env, napi_value exports)
     napi_set_named_property(env, exports, "CalculateAdaptor", result);
     return exports;
 }
-EXTERN_C_END
 
 static napi_module demoModule = {
     .nm_version = 1,

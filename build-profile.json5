@@ -81,8 +81,8 @@
       ]
     },
     {
-      "name": "native_lib",
-      "srcPath": "./native_lib",
+      "name": "hmcalculate",
+      "srcPath": "./hmcalculate",
       "targets": [
         {
           "name": "default",
