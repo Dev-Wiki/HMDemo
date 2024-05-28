@@ -23,6 +23,7 @@ if exist dist (
     if exist "%arch%" (
         del /q /s ""%arch%"
     )
+    cd ../
 )
 
 cd build
