@@ -16,4 +16,13 @@ add_library(hmcalculate SHARED
     CalculateInfo.h
     CalculateAdaptor.cpp)
 
-target_link_libraries(hmcalculate PUBLIC ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/arm64-v8a/libcalculate.so)
+# 根据不同的架构选择不同的库文件路径
+IF(OHOS_ARCH STREQUAL "arm64-v8a")
+    set(LIB_DIR ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/arm64-v8a)
+ELSEIF(OHOS_ARCH STREQUAL "x86_64")
+    set(LIB_DIR ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/x86_64)
+ELSE()
+    MESSAGE(FATAL_ERROR "Unsupported architecture: ${OHOS_ARCH}")
+ENDIF()
+
+target_link_libraries(hmcalculate PUBLIC ${LIB_DIR}/libcalculate.so)
