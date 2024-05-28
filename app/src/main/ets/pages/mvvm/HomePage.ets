@@ -35,7 +35,8 @@ export struct HomePage {
       TabContent() {
         TabView2();
       }.tabBar("View2")
-    }.onChange((index) => {
+    }.barOverlap(true)
+    .onChange((index) => {
       if (index == 0) {
         this.tv1ViewModel.onViewShow();
         this.tv2ViewModel.onViewHide();

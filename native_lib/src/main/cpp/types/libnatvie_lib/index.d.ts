@@ -1,5 +1,4 @@
-export class Calculate {
+export class CalculateAdapter {
   add(a: number, b: number): number;
-  static getInstance(): Calculate;
   getInfo(): Object;
 }

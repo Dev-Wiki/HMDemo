@@ -8,7 +8,8 @@
   "dependencies": {
     "@devwiki/common_ui": "file:../common_ui",
     "@devwiki/base": "file:../base",
-    "@ohos/axios": "^2.2.0"
+    "@ohos/axios": "^2.2.0",
+    "@devwiki/native_lib": "file:../native_lib"
   },
   "devDependencies": {},
   "dynamicDependencies": {}

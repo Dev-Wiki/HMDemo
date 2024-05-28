@@ -1,5 +1,5 @@
 {
-  "name": "native_lib",
+  "name": "@devwiki/native_lib",
   "version": "1.0.0",
   "description": "Please describe the basic information.",
   "main": "Index.ets",
@@ -7,6 +7,6 @@
   "license": "Apache-2.0",
   "packageType": "InterfaceHar",
   "dependencies": {
-    "libnatvie_lib.so": "file:./src/main/cpp/types/libnatvie_lib"
+    "native_lib.so": "file:./src/main/cpp/types/libnatvie_lib"
   }
 }

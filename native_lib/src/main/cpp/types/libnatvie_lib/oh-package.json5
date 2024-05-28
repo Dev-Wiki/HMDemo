@@ -1,5 +1,5 @@
 {
-  "name": "native_lib_lib.so",
+  "name": "native_lib.so",
   "types": "./index.d.ts",
   "version": "",
   "description": "Please describe the basic information."

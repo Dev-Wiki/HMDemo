@@ -1,40 +1,38 @@
 #include "napi/native_api.h"
-#include "Calculator.h"
+#include "CalculateAdaptor.h"
+#include "js_native_api.h"
 
-static napi_value Add(napi_env env, napi_callback_info info)
-{
-    size_t requireArgc = 2;
-    size_t argc = 2;
-    napi_value args[2] = {nullptr};
+napi_value JS_Constructor(napi_env env, napi_callback_info info) {
+    napi_value thisVar = nullptr;
+    void *data = nullptr;
+    napi_get_cb_info(env, info, nullptr, nullptr, &thisVar, &data);
+    CalculateAdaptor *adaptor = new CalculateAdaptor(env, thisVar);
+    napi_wrap(
+        env, thisVar, adaptor,
+        [](napi_env env, void *data, void *hint) {
+            CalculateAdaptor *ada = (CalculateAdaptor *)data;
+            delete ada;
+        },
+        nullptr, nullptr);
 
-    napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
-
-    napi_valuetype valuetype0;
-    napi_typeof(env, args[0], &valuetype0);
-
-    napi_valuetype valuetype1;
-    napi_typeof(env, args[1], &valuetype1);
-
-    double value0;
-    napi_get_value_double(env, args[0], &value0);
-
-    double value1;
-    napi_get_value_double(env, args[1], &value1);
-
-    napi_value sum;
-    napi_create_double(env, value0 + value1, &sum);
-
-    return sum;
-
+    return thisVar;
 }
 
 EXTERN_C_START
+
+
 napi_value Init(napi_env env, napi_value exports)
 {
-    napi_property_descriptor desc[] = {{"add", nullptr, Calculator::add, nullptr, nullptr, nullptr, napi_default, nullptr},
-                                       {"getInfo", nullptr, GetInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-    {"getInstance", nullptr, GetInstance, nullptr, nullptr, nullptr, napi_default, nullptr}};
+    const char className[] = "CalculateAdaptor";
+    napi_property_descriptor desc[] = {{"add", nullptr, calculate_add, nullptr, nullptr, nullptr, napi_default, nullptr},
+                                       {"getInfo", nullptr, calculate_getInfo, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+
+    napi_value result = nullptr;
+    napi_define_class(env, className, sizeof(className), JS_Constructor, nullptr,
+                      sizeof(desc) / sizeof(desc[0]), desc, &result);
+
+    napi_set_named_property(env, exports, "CalculateAdaptor", result);
     return exports;
 }
 EXTERN_C_END

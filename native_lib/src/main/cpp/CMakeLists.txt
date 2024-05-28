@@ -13,4 +13,4 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 
 add_library(native_lib SHARED napi_init.cpp)
 
-target_link_libraries(native_lib PUBLIC ../../../../cppLib/dist/lib/arm64-v8a)
+target_link_libraries(native_lib PUBLIC ../../../../cppLib/dist/lib/arm64-v8a/libcalculate.so)

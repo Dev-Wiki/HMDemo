@@ -4,40 +4,36 @@
 // Node APIs are not fully supported. To solve the compilation error of the interface cannot be found,
 // please include "napi/native_api.h".
 
-#include "Calculator.h"
-#include "Calculate.h"
+#include "CalculateAdaptor.h"
+#include "library.h"
 
-Calculator::Calculator() { 
+CalculateAdaptor::CalculateAdaptor() { 
     _calculate = &Calculate::getInstance(); 
 }
 
-Calculator::~Calculator() {
+CalculateAdaptor::CalculateAdaptor(napi_env env, napi_value thisVar) { 
+    _calculate = &Calculate::getInstance();
+}
+
+CalculateAdaptor::~CalculateAdaptor() {
     
 }
 
-Calculator *util_get_napi_info(napi_env env, napi_callback_info cbinfo, size_t argc, napi_value *argv) 
+CalculateAdaptor *util_get_napi_info(napi_env env, napi_callback_info cbinfo, size_t argc, napi_value *argv) 
 {
     napi_value thisVar = nullptr;
     void *data = nullptr;
     napi_get_cb_info(env, cbinfo, &argc, argv, &thisVar, &data);
-    Calculator *calculator = nullptr;
+    CalculateAdaptor *calculator = nullptr;
     napi_unwrap(env, thisVar, (void **)&calculator);
     return calculator;
 }
 
-Calculate *util_get_napi_calculate(napi_env env, napi_callback_info cbinfo, size_t argc, napi_value *argv) 
-{
-    Calculator *calculator = util_get_napi_info(env, cbinfo, argc, argv);
-    if (calculator) {
-        return calculator->_calculate;
-    }
-    return nullptr;
-}
 
 napi_value calculate_add(napi_env env, napi_callback_info info) {
     size_t argc = 2;
     napi_value argv[2] = {0};
-    Calculator *calculator = util_get_napi_info(env, info, argc, argv);
+    CalculateAdaptor *calculator = util_get_napi_info(env, info, argc, argv);
 
     int32_t result = 0;
     napi_status a = napi_ok;
@@ -51,10 +47,10 @@ napi_value calculate_add(napi_env env, napi_callback_info info) {
     return value;
 }
 
-CalculateInfo calculate_getInfo(napi_env env, napi_callback_info info) {
+napi_value calculate_getInfo(napi_env env, napi_callback_info info) {
     size_t argc = 0;
     napi_value argv[1] = {0};
-    Calculator *calculator = util_get_napi_info(env, info, argc, argv);
+    CalculateAdaptor *calculator = util_get_napi_info(env, info, argc, argv);
     
     CalculateInfo info2;
     info2.name = calculator->_calculate->getInfo().name;
@@ -62,4 +58,6 @@ CalculateInfo calculate_getInfo(napi_env env, napi_callback_info info) {
     info2.versionName = calculator->_calculate->getInfo().versionName;
     
     napi_value value;
+    
+    return value;
 }

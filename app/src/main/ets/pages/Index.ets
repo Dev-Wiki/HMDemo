@@ -8,6 +8,7 @@ import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
 import { common, Want } from '@kit.AbilityKit';
+import { CalculateAdapter } from '@devwiki/native_lib/src/main/cpp/types/libnatvie_lib';
 
 
 @Entry
@@ -63,9 +64,13 @@ struct Index {
     }
   ];
 
+  adapter?: CalculateAdapter;
+
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();
     BaseLocalStorage.getInstance().init(getContext(this));
+    this.adapter = new CalculateAdapter();
+    let a = this.adapter.add(1,2);
   }
 
   onPageShow(): void {
