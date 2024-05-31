@@ -22,6 +22,8 @@ export struct SchemePage {
   openScheme() {
     let context = getContext(this) as common.UIAbilityContext;
     let wantInfo: Want = {
+      action: 'ohos.want.action.viewData',
+      entities: ['entity.system.browsable'],
       uri: 'https://devwiki.net'
     }
     context.startAbility(wantInfo);
