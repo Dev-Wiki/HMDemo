@@ -3,10 +3,12 @@
     "pages/Index",
 
     "pages/animation/CompTransitionPage",
+    "pages/animation/LoadingPage",
 
     "pages/component/InputPage",
     "pages/component/SVGPage",
     "pages/component/TextPage",
+    "pages/component/ToastPage",
 
     "pages/layout/LinearLayoutPage",
     "pages/layout/RelativeContainerPage",

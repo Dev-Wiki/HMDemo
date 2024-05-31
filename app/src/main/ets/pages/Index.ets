@@ -1,5 +1,4 @@
 import { CommonRes, TitleBar } from '@devwiki/common_ui';
-import web_webview from '@ohos.web.webview';
 import { TitleBarMenuType } from '@devwiki/common_ui';
 import { router, window } from '@kit.ArkUI';
 import promptAction from '@ohos.promptAction';
@@ -7,8 +6,8 @@ import { BusinessError } from '@ohos.base';
 import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
-import { CalculateAdapter } from '@devwiki/hmcalculate';
 
+import('./animation/LoadingPage')
 
 @Entry
 @Component
@@ -28,7 +27,8 @@ struct Index {
     {
       name: 'Component',
       items: [
-        {name: 'InputPage', page: 'pages/component/InputPage'}
+        {name: 'InputPage', page: 'pages/component/InputPage'},
+        {name: 'ToastPage', page: 'pages/component/ToastPage'}
       ]
     },
     // 布局
@@ -44,6 +44,7 @@ struct Index {
       name: "Animation",
       items: [
         { name: 'CompTransition', page: 'pages/animation/CompTransitionPage'},
+        { name: 'Loading', page: 'pages/animation/LoadingPage'},
       ]
     },
     // 多媒体
@@ -63,13 +64,9 @@ struct Index {
     }
   ];
 
-  adapter?: CalculateAdapter;
-
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();
     BaseLocalStorage.getInstance().init(getContext(this));
-    this.adapter = new CalculateAdapter();
-    let a = this.adapter.add(1,2);
   }
 
   onPageShow(): void {
@@ -167,7 +164,7 @@ struct Index {
             })
           }
         })
-      }.width('100%').margin({top: 16, bottom: 48})
+      }.width('100%').margin({top: 16}).layoutWeight(1)
     }.width('100%').height('100%')
   }
 }
