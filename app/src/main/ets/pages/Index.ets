@@ -6,6 +6,7 @@ import { BusinessError } from '@ohos.base';
 import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
+import { Context } from '@kit.AbilityKit';
 
 import('./animation/LoadingPage')
 

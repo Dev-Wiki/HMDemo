@@ -25,11 +25,11 @@ export struct TitleBar {
   @Prop menuPadding: number = 8;
 
   @Prop leftText: ResourceStr = "";
-  @Prop leftIcon: Resource = $r("app.media.ic_chevron_left");
+  @Prop leftIcon: Resource = $r(`app.media.ic_chevron_left`);
   @Prop leftMenuType: TitleBarMenuType = TitleBarMenuType.Icon;
 
   @Prop rightText: ResourceStr = "";
-  @Prop rightIcon: Resource = $r("app.media.ic_close");
+  @Prop rightIcon: Resource = $r(`app.media.ic_close`);
   @Prop rightMenuType: TitleBarMenuType = TitleBarMenuType.None;
 
   @Prop titleTextAlign: TextAlign = TextAlign.Start;

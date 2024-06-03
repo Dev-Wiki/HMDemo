@@ -7,27 +7,27 @@ export class CommonRes {
   }
 
   public static getIconRefresh(): Resource {
-    return $r("app.media.ic_refresh");
+    return $r(`app.media.ic_refresh`);
   }
 
   public static getIconChevronLeft(): Resource {
-    return $r("app.media.ic_chevron_left");
+    return $r(`app.media.ic_chevron_left`);
   }
 
   public static getIconChevronRight(): Resource {
-    return $r("app.media.ic_chevron_right");
+    return $r(`app.media.ic_chevron_right`);
   }
 
   public static getIconClose(): Resource {
-    return $r("app.media.ic_close");
+    return $r(`app.media.ic_close`);
   }
 
   public static getIconEyeOn(): Resource {
-    return $r("app.media.ic_eye_on");
+    return $r(`app.media.ic_eye_on`);
   }
 
   public static getIconEyeOff(): Resource {
-    return $r("app.media.ic_eye_off");
+    return $r(`app.media.ic_eye_off`);
   }
 
   public static getImage(resName: string): Resource {

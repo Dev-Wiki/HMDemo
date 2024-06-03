@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "module_desc",
-      "value": "module description"
+      "value": "HM4Demo App"
     },
     {
       "name": "AppAbility_desc",
-      "value": "description"
+      "value": "HM4Demo"
     },
     {
       "name": "AppAbility_label",
-      "value": "label"
+      "value": "HM4Demo"
     }
   ]
 }

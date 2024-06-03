@@ -26,7 +26,7 @@ export struct PhoneInput {
       Row() {
         Text(this.countryCode)
           .height(44)
-        Image($r('app.media.ic_chevron_down'))
+        Image($r(`app.media.ic_chevron_down`))
           .objectFit(ImageFit.Contain)
           .width(12)
           .height(12)
@@ -55,7 +55,7 @@ export struct PhoneInput {
         })
         .width('100%')
 
-      Image($r('app.media.ic_clear_circle'))
+      Image($r(`app.media.ic_clear_circle`))
         .width(18)
         .height(18)
         .backgroundColor(Color.Green)
