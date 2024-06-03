@@ -1,5 +1,5 @@
 import { Emitter, EmitterItem } from '@devwiki/base';
-import { Toast } from '../../utils/Toast';
+import { Toast } from '../../../../../../common_ui/src/main/ets/utils/Toast';
 
 @Entry
 @Component

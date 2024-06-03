@@ -1,4 +1,4 @@
-import { Toast } from '../../utils/Toast'
+import { Toast } from '@devwiki/common_ui/'
 
 @Observed
 class ToastViewMode {

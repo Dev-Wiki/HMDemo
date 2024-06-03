@@ -24,15 +24,20 @@
 
 ## app模块
 
-- [MVVM架构](app/src/main/ets/pages/mvvm/HomePage.ets)
-
-- [web功能](app/src/main/ets/pages/web)
+- [动画](app/src/main/ets/pages/animation)
+- [组件](app/src/main/ets/pages/component)
 - [布局学习](app/src/main/ets/pages/layout)
   - [线性布局](app/src/main/ets/pages/layout/LinearLayoutPage.ets)
-- [动画](app/src/main/ets/pages/animation)
 - [多媒体](app/src/main/ets/pages/media)
   - [AVPlayer](app/src/main/ets/pages/media/AVPlayerPage.ets)
   - [照片选择](app/src/main/ets/pages/media/PhotoPage.ets)
+- [MVVM架构](app/src/main/ets/pages/mvvm/HomePage.ets)
+- [网络](app/src/main/ets/pages/net)
+- [系统功能](app/src/main/ets/pages/system)
+- [web功能](app/src/main/ets/pages/web)
+
+
+
 
 ## common ui模块
 
