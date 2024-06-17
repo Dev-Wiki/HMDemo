@@ -1,18 +1,28 @@
-本项目代码地址为: [Harmony/HM4Demo - HM4Demo - DevWiki Gitea](https://git.devwiki.net/Harmony/HM4Demo)
+本项目代码地址为: [Harmony/HMDemo - HMDemo - DevWiki Gitea](https://git.devwiki.net/Harmony/HMDemo)
 
 提交时会同步更新至:
-- github: [Dev-Wiki/HM4Demo](https://github.com/Dev-Wiki/HM4Demo)
-- gitee : [DevWiki/HM4Demo](https://gitee.com/devwiki/HM4Demo)
+- github: [Dev-Wiki/HMDemo](https://github.com/Dev-Wiki/HMDemo)
+- gitee : [DevWiki/HMDemo](https://gitee.com/devwiki/HMDemo)
+
+[TOC]
 
 # 项目概要
 
-## 重要说明
+## 1. 重要说明
 
-本项目为 HM4项目,其中:
+目前分支如下:
+### 1.1 master分支
+
+基于API11,即 DevEco使用 4.x或者 5.0.3.200版本
 - compileSdkVersion : 4.1.0(11)
 - compatibleSdkVersion: 4.0.0(10)
 
+### 1.2 api12分支
+基于API12, DevEco使用 5.0.3.300之后版本
+
 请使用API对应的DevEco进行编译.
+
+### 1.3项目模块
 
 本项目模块分为:
 - app: 主入口模块
@@ -22,7 +32,7 @@
 - native_lib: 包含C++ 的 shared 模块
 
 
-## app模块
+## 2. app模块
 
 - [动画](app/src/main/ets/pages/animation)
 - [组件](app/src/main/ets/pages/component)
@@ -36,10 +46,7 @@
 - [系统功能](app/src/main/ets/pages/system)
 - [web功能](app/src/main/ets/pages/web)
 
-
-
-
-## common ui模块
+## 3. common ui模块
 
 包含的组件有:
 
@@ -49,7 +56,7 @@
 
 
 
-## base 模块
+## 4. base 模块
 
 事件相关:
 - 事件发射器: [Emitter](base/src/main/ets/event/Emitter.ets)
