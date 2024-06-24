@@ -30,39 +30,28 @@ export struct WebPage {
 
   build() {
     Column() {
-      RelativeContainer() {
-        TitleBar({
-          title: this.viewModel.pageTitle,
-          onLeftClicked: () => {
-            if (this.onTitleBarLeftClick) {
-              this.onTitleBarLeftClick();
-            } else {
-              this.getUIContext().getRouter().back()
-            }
-          },
-          rightIcon: CommonRes.getIconRefresh(),
-          // 必须这么写 onTitleBarRightClick内部的代码才执行,
-          // 直接 onRightClicked: this.onTitleBarRightClick 这么写, 代码不执行
-          onRightClicked: (event: ClickEvent) => { this.onTitleBarRightClick(event)},
-        })
-          .width('100%')
-          .alignRules({
-            top: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Top },
-            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
-          }).id("title_bar");
+      TitleBar({
+        title: this.viewModel.pageTitle,
+        onLeftClicked: () => {
+          if (this.onTitleBarLeftClick) {
+            this.onTitleBarLeftClick();
+          } else {
+            this.getUIContext().getRouter().back()
+          }
+        },
+        rightIcon: CommonRes.getIconRefresh(),
+        // 必须这么写 onTitleBarRightClick内部的代码才执行,
+        // 直接 onRightClicked: this.onTitleBarRightClick 这么写, 代码不执行
+        onRightClicked: (event: ClickEvent) => { this.onTitleBarRightClick(event)},
+      }).width('100%')
 
-        Divider().alignRules({
-          top: { anchor: "title_bar", align: VerticalAlign.Bottom },
-          left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
-        }).width('100%').id("divider")
+      Divider().alignRules({
+        top: { anchor: "title_bar", align: VerticalAlign.Bottom },
+        left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start }
+      }).width('100%').id("divider")
 
-        WebView({ param: this.viewModel.webParam, controller: this.webViewController }).width('100%')
-          .alignRules({
-            top: { anchor: "divider", align: VerticalAlign.Bottom },
-            left: { anchor: ComponentConst.ContainerId, align: HorizontalAlign.Start },
-            bottom: { anchor: ComponentConst.ContainerId, align: VerticalAlign.Bottom }
-          }).id("host_web")
-      }.width('100%').height('100%')
+      WebView({ param: this.viewModel.webParam, controller: this.webViewController }).width('100%')
+        .layoutWeight(1).borderWidth(1).borderColor(Color.Red)
     }.width('100%').height('100%')
   }
 }
@@ -88,7 +77,7 @@ class WebPageController extends WebViewController {
 class WebPageViewModel {
 
   webParam: WebViewParam = {
-    webUrl: "https://devwiki.net"
+    webUrl: "https://baidu.com"
   };
 
   pageTitle: ResourceStr = "WebPage";

@@ -1,5 +1,7 @@
 import web_webview from '@ohos.web.webview';
 import { WebScriptCallback, WebScriptFunction } from './WebScript';
+import { picker } from '@kit.CoreFileKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 export class WebViewParam {
   webUrl: string = "";
@@ -9,6 +11,8 @@ export class WebViewParam {
 export struct WebView {
 
   private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
+  selectOptions?: picker.PhotoSelectOptions | picker.DocumentSelectOptions;
+  viewPicker?: picker.PhotoViewPicker | picker.DocumentViewPicker;
   controller: WebViewController = new WebViewController();
   @Prop @Watch("onParamChanged")param: WebViewParam = new WebViewParam();
 
@@ -33,6 +37,21 @@ export struct WebView {
         controller: this.webviewController
       })
       .onPageEnd(() => { this.controller.onPageEnd(this.webviewController.getTitle()) })
+      .onShowFileSelector( (event) =>{
+        let uri: string[] | null = null;
+        this.selectOptions = new picker.DocumentSelectOptions();
+        this.viewPicker = new picker.DocumentViewPicker();
+        this.viewPicker.select(this.selectOptions).then((result) => {
+          uri = result;
+          console.info('DocumentViewPicker.select to file succeed and uri is:' + uri);
+          if (event) {
+            event.result.handleFileList(uri);
+          }
+        }).catch((err: BusinessError) => {
+          console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+        })
+        return true;
+      })
       .width('100%')
       .height('100%');
   }
