@@ -9,7 +9,7 @@
     "@devwiki/common_ui": "file:../common_ui",
     "@devwiki/base": "file:../base",
     "@ohos/axios": "^2.2.0",
-//    "@devwiki/hmcalculate": "file:../hmcalculate"
+    "@devwiki/hmcalculate": "file:../hmcalculate"
   },
   "devDependencies": {},
   "dynamicDependencies": {}
