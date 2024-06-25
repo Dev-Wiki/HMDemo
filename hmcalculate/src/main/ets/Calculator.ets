@@ -1,12 +1,12 @@
-import { CalculateAdapter } from 'native_lib.so'
+import { CalculateAdaptor } from 'libhmcalculate.so'
 import { CalculateInfo } from './CalculateInfo'
 
 export class Calculator {
 
-  private adaptor!:CalculateAdapter;
+  private adaptor!:CalculateAdaptor;
 
   constructor() {
-    this.adaptor = new CalculateAdapter();
+    this.adaptor = new CalculateAdaptor();
   }
 
   add(a:number, b: number): number {

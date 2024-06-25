@@ -7,6 +7,7 @@ import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
 import { Context } from '@kit.AbilityKit';
+import { Calculator } from '@devwiki/hmcalculate';
 
 import('./animation/LoadingPage')
 
@@ -68,6 +69,10 @@ struct Index {
   aboutToAppear(): void {
     ScreenUtil.getInstance().initScreenSize();
     BaseLocalStorage.getInstance().init(getContext(this));
+
+    let cal:Calculator = new Calculator();
+    let sum = cal.add(1,2);
+    let info = cal.getInfo();
   }
 
   onPageShow(): void {

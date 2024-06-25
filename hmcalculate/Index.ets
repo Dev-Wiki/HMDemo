@@ -1,1 +1,2 @@
-export { CalculateAdapter } from './src/main/cpp/types/libhmcalculate/index'
+export { Calculator } from './src/main/ets/Calculator'
+export { CalculateInfo } from './src/main/ets/CalculateInfo'

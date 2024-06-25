@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.4.1)
 project(hmcalculate)
 
 set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+add_definitions(-DOHOS_PLATFORM)
 
 if(DEFINED PACKAGE_FIND_FILE)
     include(${PACKAGE_FIND_FILE})
@@ -13,16 +14,61 @@ include_directories(${NATIVERENDER_ROOT_PATH}
 
 add_library(hmcalculate SHARED
     napi_init.cpp
-    CalculateInfo.h
     CalculateAdaptor.cpp)
 
-# 根据不同的架构选择不同的库文件路径
-IF(OHOS_ARCH STREQUAL "arm64-v8a")
-    set(LIB_DIR ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/arm64-v8a)
-ELSEIF(OHOS_ARCH STREQUAL "x86_64")
-    set(LIB_DIR ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/x86_64)
-ELSE()
-    MESSAGE(FATAL_ERROR "Unsupported architecture: ${OHOS_ARCH}")
-ENDIF()
+find_library(
+    # Sets the name of the path variable.
+    EGL-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    EGL
+)
 
-target_link_libraries(hmcalculate PUBLIC ${LIB_DIR}/libcalculate.so)
+find_library(
+    # Sets the name of the path variable.
+    GLES-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    GLESv3
+)
+
+find_library(
+    # Sets the name of the path variable.
+    hilog-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    hilog_ndk.z
+)
+
+find_library(
+    # Sets the name of the path variable.
+    libnapi-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    ace_napi.z
+)
+
+find_library(
+    # Sets the name of the path variable.
+    libace-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    ace_ndk.z
+)
+
+find_library(
+    # Sets the name of the path variable.
+    libuv-lib
+    # Specifies the name of the NDK library that
+    # you want CMake to locate.
+    uv
+)
+
+target_link_libraries(hmcalculate PUBLIC
+ ${EGL-lib}
+ ${GLES-lib}
+ ${hilog-lib}
+ ${libnapi-lib}
+ ${libace-lib}
+ ${libuv-lib}
+ ${NATIVERENDER_ROOT_PATH}/../../../../cppLib/dist/lib/${OHOS_ARCH}/libcalculate.so)

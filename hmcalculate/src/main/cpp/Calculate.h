@@ -1,7 +1,6 @@
 #ifndef CPPLIB_LIBRARY_H
 #define CPPLIB_LIBRARY_H
 
-#include <string>
 #include "CalculateInfo.h"
 
 class Calculate {

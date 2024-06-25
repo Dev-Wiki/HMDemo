@@ -5,15 +5,15 @@
 // please include "napi/native_api.h".
 
 #include "CalculateAdaptor.h"
+#include "js_native_api.h"
 #include "Calculate.h"
-#include "CalculateInfo.h"
+#include <string>
+#include <stdint.h>
 
 CalculateAdaptor::CalculateAdaptor() { 
-    _calculate = &Calculate::getInstance(); 
 }
 
 CalculateAdaptor::CalculateAdaptor(napi_env env, napi_value thisVar) { 
-    _calculate = &Calculate::getInstance();
 }
 
 CalculateAdaptor::~CalculateAdaptor() {
@@ -29,7 +29,6 @@ CalculateAdaptor *util_get_napi_info(napi_env env, napi_callback_info cbinfo, si
     napi_unwrap(env, thisVar, (void **)&calculator);
     return calculator;
 }
-
 
 napi_value calculate_add(napi_env env, napi_callback_info info) {
     size_t argc = 2;
@@ -58,7 +57,57 @@ napi_value calculate_getInfo(napi_env env, napi_callback_info info) {
     info2.versionCode = calculator->_calculate->getInfo().versionCode;
     info2.versionName = calculator->_calculate->getInfo().versionName;
     
-    napi_value value;
+    napi_value js_frame;
+    napi_create_object(env, &js_frame);
+    util_set_object_string_property_value(env, js_frame, "name", info2.name);
+    util_set_object_string_property_value(env, js_frame, "versionName", &info2.versionName);
+    util_set_object_int32_property_value(env, js_frame, "versionCode", info2.versionCode);
     
+    return js_frame;
+}
+
+napi_value util_create_int32_value(napi_env env, int32_t arg)
+{
+    napi_value value;
+    napi_status status = napi_create_int32(env, arg, &value);
     return value;
+}
+
+napi_status util_set_object_int32_property_value(napi_env env, napi_value object, const char *name, int32_t value)
+{
+    napi_value js_value = util_create_int32_value(env, value);
+    return napi_set_named_property(env, object, name, js_value);
+}
+
+napi_value util_create_string_value(napi_env env, const char *arg)
+{
+    napi_value value;
+    napi_status status = napi_create_string_utf8(env, arg, NAPI_AUTO_LENGTH, &value);
+    return value;
+}
+
+napi_status util_set_object_string_property_value(napi_env env, napi_value object, const char *name, const char *value)
+{
+    napi_value js_value = util_create_string_value(env, value);
+    return napi_set_named_property(env, object, name, js_value);
+}
+
+char *util_get_object_string_property_value(napi_env env, napi_value arg, const char *name)
+{
+    napi_status status = napi_ok;
+    napi_value js_result;
+    status = napi_get_named_property(env, arg, name, &js_result);
+    if (napi_ok == status) {
+        return util_get_string_value(env, js_result);
+    }
+    return "";
+}
+
+char *util_get_string_value(napi_env env, napi_value arg)
+{
+    size_t len = 0;
+    napi_get_value_string_utf8(env, arg, nullptr, 0, &len);   // 获取字符串长度到len
+    char *buf = new char[len + 1];                            // 分配合适大小的char数组
+    napi_get_value_string_utf8(env, arg, buf, len + 1, &len); // 获取字符串
+    return buf;
 }
