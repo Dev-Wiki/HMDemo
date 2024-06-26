@@ -15,8 +15,8 @@ class CalculateAdaptor {
 public:
     CalculateAdaptor();
     CalculateAdaptor(napi_env env, napi_value thisVar);
-    ~CalculateAdaptor();
-    Calculate *_calculate;
+    virtual ~CalculateAdaptor();
+    Calculate *_calculate = nullptr;
 };
 
 CalculateAdaptor *util_get_napi_info(napi_env env, napi_callback_info cbinfo, size_t argc, napi_value *argv);

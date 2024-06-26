@@ -11,9 +11,11 @@
 #include <stdint.h>
 
 CalculateAdaptor::CalculateAdaptor() { 
+    _calculate = &Calculate::getInstance();
 }
 
 CalculateAdaptor::CalculateAdaptor(napi_env env, napi_value thisVar) { 
+    _calculate = &Calculate::getInstance();
 }
 
 CalculateAdaptor::~CalculateAdaptor() {
@@ -59,8 +61,8 @@ napi_value calculate_getInfo(napi_env env, napi_callback_info info) {
     
     napi_value js_frame;
     napi_create_object(env, &js_frame);
-    util_set_object_string_property_value(env, js_frame, "name", info2.name);
-    util_set_object_string_property_value(env, js_frame, "versionName", &info2.versionName);
+    util_set_object_string_property_value(env, js_frame, "name", info2.name.c_str());
+    util_set_object_string_property_value(env, js_frame, "versionName", info2.versionName.c_str());
     util_set_object_int32_property_value(env, js_frame, "versionCode", info2.versionCode);
     
     return js_frame;
