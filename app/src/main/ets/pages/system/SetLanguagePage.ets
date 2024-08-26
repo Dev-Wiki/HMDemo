@@ -4,9 +4,8 @@ import { i18n } from '@kit.LocalizationKit';
 @Entry
 @Component
 struct SetLanguagePage {
-
   private readonly languageGroup = "languageGroup"
-  @State selectedIndex: number = 0;
+  @State selectedLanguage: string = 'zh-Hans';
 
   build() {
     Column() {
@@ -15,24 +14,25 @@ struct SetLanguagePage {
       });
       Row() {
         Text('简体中文');
-        Radio({group: this.languageGroup, value: '简体中文'}).checked(true).onChange(isChecked => {
-          if (isChecked) {
-            this.selectedIndex = 0;
-          }
-        });
-      }
-      Row() {
-        Text('英文');
-        Radio({group: this.languageGroup, value: '英文'}).checked(false).onChange(isChecked => {
-          if (isChecked) {
-            this.selectedIndex = 1;
-          }
-        });
+        Radio({ group: this.languageGroup, value: 'zh-Hans' }).checked(this.selectedLanguage == 'zh-Hans')
+          .onChange(isChecked => {
+            if (isChecked) {
+              i18n.System.setAppPreferredLanguage('zh-Hans')
+              this.selectedLanguage = 'zh-Hans'
+            }
+          });
       }
 
-      Button('修改语言').onClick(() => {
-        i18n.System.setAppPreferredLanguage(this.selectedIndex == 0 ? 'zh-Hans' : 'en-US')
-      })
+      Row() {
+        Text('英文');
+        Radio({ group: this.languageGroup, value: 'en-US' }).checked(this.selectedLanguage == 'en-US')
+          .onChange(isChecked => {
+            if (isChecked) {
+              i18n.System.setAppPreferredLanguage('en-US')
+              this.selectedLanguage = 'en-US'
+            }
+          });
+      }
     }.width('100%').height('100%')
   }
 }
