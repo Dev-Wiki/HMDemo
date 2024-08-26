@@ -4,6 +4,7 @@
     "type": "entry",
     "description": "$string:module_desc",
     "mainElement": "AppAbility",
+    "srcEntry": "./ets/AppAbilityStage.ets",
     "deviceTypes": [
       "phone",
       "tablet",

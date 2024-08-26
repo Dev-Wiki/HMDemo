@@ -11,6 +11,10 @@
     {
       "name": "AppAbility_label",
       "value": "HM4Demo"
+    },
+    {
+      "name": "set_language_title",
+      "value": "Set Language"
     }
   ]
 }

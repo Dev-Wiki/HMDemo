@@ -24,6 +24,7 @@
 
     "pages/system/SchemePage",
     "pages/system/TimerPage",
+    "pages/system/SetLanguagePage",
 
     "pages/web/WebPage",
     "pages/web/WebDialogPage"

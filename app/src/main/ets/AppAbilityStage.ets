@@ -1,8 +1,11 @@
 import { AbilityConstant, AbilityStage, Configuration, Want } from '@kit.AbilityKit';
 
-class HMDemoAbilityStage extends AbilityStage {
+const TAG = '[AbilityStage]';
+
+export default class AppAbilityStage extends AbilityStage {
 
   onCreate(): void {
+    console.log(TAG, "onCreate")
   }
 
   // onAcceptWant(want: Want): string {

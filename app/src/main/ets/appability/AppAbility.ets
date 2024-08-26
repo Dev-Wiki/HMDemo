@@ -2,6 +2,8 @@ import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 
+const TAG = '[AppAbility]'
+
 export default class AppAbility extends UIAbility {
   constructor() {
     super();

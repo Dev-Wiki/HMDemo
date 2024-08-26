@@ -61,7 +61,8 @@ struct Index {
       name: 'System',
       items: [
         {name: "Scheme", page: 'pages/system/SchemePage'},
-        {name: "MVVM", page: 'pages/mvvm/HomePage'}
+        {name: "MVVM", page: 'pages/mvvm/HomePage'},
+        {name: "SetLanguage", page: 'pages/system/SetLanguagePage'}
       ]
     }
   ];
