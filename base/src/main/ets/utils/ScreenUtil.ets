@@ -25,11 +25,11 @@ export class ScreenUtil {
     return ScreenUtil.instance;
   }
 
-  initScreenSize(): void {
+  initScreenSize(context: Context): void {
     this.portraitListener.on('change', (result)=> {
       AppStorage.setOrCreate(ScreenUtil.isPortraitKey, result.matches)
     })
-    window.getLastWindow(getContext(this))
+    window.getLastWindow(context)
       .then((windowClass: window.Window) => {
         let type = window.AvoidAreaType.TYPE_NAVIGATION_INDICATOR; // 以导航条避让为例
         let avoidArea = windowClass.getWindowAvoidArea(type);

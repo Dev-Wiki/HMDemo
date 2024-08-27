@@ -2,8 +2,8 @@
 import hilog from '@ohos.hilog';
 
 let domain: number = 0xFF00;
-let prefix: string = 'HM4Demo';
-let format: string = `%{public}s`;
+let prefix: string = 'HMDemo';
+let format: string = `%{public}s, %{public}s`;
 
 export class Log {
 

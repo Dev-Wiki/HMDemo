@@ -1,11 +1,21 @@
 import { TitleBar } from '@devwiki/common_ui';
 import { i18n } from '@kit.LocalizationKit';
+import { Log } from '@devwiki/base';
+
+const TAG = '[SetLanguagePage]'
 
 @Entry
 @Component
 struct SetLanguagePage {
   private readonly languageGroup = "languageGroup"
   @State selectedLanguage: string = 'zh-Hans';
+
+  aboutToAppear(): void {
+    let languages:string[] = i18n.System.getSystemLanguages();
+    languages.forEach((value, index) => {
+      Log.i(TAG, `${index.toString()}:${value}`)
+    })
+  }
 
   build() {
     Column() {

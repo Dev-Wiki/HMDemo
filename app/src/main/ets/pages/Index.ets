@@ -8,6 +8,7 @@ import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
 import { Context } from '@kit.AbilityKit';
 import { Calculator } from '@devwiki/hmcalculate';
+import { MyApp } from '../MyApp';
 
 import('./animation/LoadingPage')
 
@@ -68,8 +69,8 @@ struct Index {
   ];
 
   aboutToAppear(): void {
-    ScreenUtil.getInstance().initScreenSize();
-    BaseLocalStorage.getInstance().init(getContext(this));
+    ScreenUtil.getInstance().initScreenSize(MyApp.appContext);
+    BaseLocalStorage.getInstance().init(MyApp.appContext);
   }
 
   onPageShow(): void {
