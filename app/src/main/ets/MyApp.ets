@@ -1,5 +1,5 @@
 import { Context } from '@ohos.arkui.UIContext';
-import window from '@ohos.window';
+import { window } from '@kit.ArkUI';
 
 export class MyApp {
 

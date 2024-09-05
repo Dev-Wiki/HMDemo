@@ -65,6 +65,12 @@ struct Index {
         {name: "MVVM", page: 'pages/mvvm/HomePage'},
         {name: "SetLanguage", page: 'pages/system/SetLanguagePage'}
       ]
+    },
+    {
+      name: 'Map',
+      items: [
+        {name: 'Map', page: 'pages/map/MapPage'}
+      ]
     }
   ];
 

@@ -15,6 +15,14 @@
     {
       "name": "set_language_title",
       "value": "设置语言"
+    },
+    {
+      "name": "location_permission",
+      "value": "location_permission"
+    },
+    {
+      "name": "approximately_location",
+      "value": "approximately_location"
     }
   ]
 }

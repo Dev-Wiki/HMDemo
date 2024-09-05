@@ -27,6 +27,10 @@
     "pages/system/SetLanguagePage",
 
     "pages/web/WebPage",
-    "pages/web/WebDialogPage"
+    "pages/web/WebDialogPage",
+
+    "pages/map/MapPage"
+
+
   ]
 }

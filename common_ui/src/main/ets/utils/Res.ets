@@ -15,4 +15,12 @@ export class Res {
     let retStr = textDecoder.decodeWithStream( content , decodeWithStreamOptions);
     return retStr;
   }
+
+  static getResStr(descName: string, ...rest: string[]): ResourceStr {
+    try {
+      return $r(`app.string.${descName}`, ...rest);
+    } catch (e) {
+      return '';
+    }
+  }
 }
