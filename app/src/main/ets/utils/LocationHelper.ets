@@ -25,6 +25,57 @@ export class LocationHelper {
 
   }
 
+  // openLocation(callback:(address: string) => void) {
+  //   let options: AMapLocationOption = {
+  //     priority: geoLocationManager.LocationRequestPriority.FIRST_FIX, //定位优先配置选项
+  //     scenario: geoLocationManager.LocationRequestScenario.UNSET, //定位场景设置
+  //     timeInterval: 2, //定位时间间隔
+  //     distanceInterval: 0, //位置报告距离间隔
+  //     maxAccuracy: 0, //定位精度 单位：米
+  //     allowsBackgroundLocationUpdates: false, //是否允许后台定位
+  //     locatingWithReGeocode: true, //定位是否返回逆地理信息
+  //     reGeocodeLanguage: AMapLocationReGeocodeLanguage.Chinese, //逆地址语言类型
+  //     isOffset: true //是否加偏
+  //   }
+  //   let listener: IAMapLocationListener = {
+  //     onLocationChanged: (location) => {
+  //       this.getLocationAddress(location.latitude,  location.longitude, 1, (err, data) => {
+  //           if (err) {
+  //             console.error('getAddressesFromLocation: err=' + JSON.stringify(err));
+  //           }
+  //           if (data) {
+  //             console.log('getAddressesFromLocation: data=' + JSON.stringify(data));
+  //             let loc = data[0].placeName ?? '';
+  //             if (data[0].administrativeArea) {
+  //               loc = loc.replace(data[0].administrativeArea, '')
+  //             }
+  //             if (data[0].subAdministrativeArea) {
+  //               loc = loc.replace(data[0].subAdministrativeArea, '')
+  //             }
+  //             if (data[0].subLocality) {
+  //               loc = loc.replace(data[0].subLocality, '')
+  //             }
+  //             if (data[0].roadName) {
+  //               loc = loc.replace(data[0].roadName, '')
+  //             }
+  //             if (data[0].subRoadName) {
+  //               loc = loc.replace(data[0].subRoadName, '')
+  //             }
+  //             if (data[0].subRoadName && loc === '') {
+  //               loc = data[0].subRoadName?.toString()
+  //             }
+  //             callback(loc);
+  //           }
+  //         });
+  //     }, onLocationError: (error) => {
+  //       console.error(`IAMapLocationListener ${error.errorMsg}:${error.errorCode}`)
+  //     }
+  //   };
+  //   this.locationManger?.setLocationListener(AMapLocationType.Updating, listener) //设置定位信息监听
+  //   this.locationManger?.setLocationOption(AMapLocationType.Updating, options) //设置定位配置项
+  //   this.locationManger?.startUpdatingLocation() //开启连续定位
+  // }
+
 
   /**
    * 请求定位 allowScope是否允许定位, allowPrecision: 是否允许获取精确位置
