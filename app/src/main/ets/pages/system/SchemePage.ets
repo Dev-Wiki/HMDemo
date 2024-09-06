@@ -3,7 +3,7 @@ import { common, Want } from '@kit.AbilityKit';
 
 @Component
 @Entry
-export struct SchemePage {
+struct SchemePage {
   build() {
     Column() {
       TitleBar({

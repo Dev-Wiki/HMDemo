@@ -8,7 +8,6 @@ function textInputStyle() {
   .padding(5)
 }
 
-@Preview
 @Component
 export struct PhoneInput {
   @Prop countryCode: string = "+86"

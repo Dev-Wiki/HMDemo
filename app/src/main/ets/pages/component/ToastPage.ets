@@ -12,7 +12,7 @@ class ToastViewMode {
 
 @Entry
 @Component
-export struct ToastPage {
+struct ToastPage {
 
   @Provide toastVM: ToastViewMode = new ToastViewMode();
 

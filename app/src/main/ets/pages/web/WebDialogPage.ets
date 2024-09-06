@@ -5,12 +5,12 @@ import { TitleBar } from '@devwiki/common_ui/src/main/ets/component/TitleBar';
 @CustomDialog
 export struct WebPageDialog {
   @StorageLink(ScreenUtil.isPortraitKey) isPortrait: boolean = true;
-  dialogController: CustomDialogController;
+  dialogController?: CustomDialogController;
 
   build() {
     WebPage({
       onTitleBarLeftClick: () => {
-        this.dialogController.close();
+        this.dialogController?.close();
       }
     }).height(this.isPortrait ? '95%' : '90%').width(this.isPortrait ? '100%' : '50%')
   }
@@ -18,7 +18,7 @@ export struct WebPageDialog {
 
 @Entry
 @Component
-export struct WebDialogPage {
+struct WebDialogPage {
 
   dialogController: CustomDialogController = new CustomDialogController({
     builder: WebPageDialog(),

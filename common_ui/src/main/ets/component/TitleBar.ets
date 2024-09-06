@@ -15,11 +15,10 @@ export enum TitleBarMenuType{
   Text = 2
 }
 
-@Preview
 @Component
 export struct TitleBar {
 
-  @Prop title: ResourceStr;
+  @Prop title: ResourceStr = '';
 
   @Prop barHeight: number = 48;
   @Prop menuPadding: number = 8;

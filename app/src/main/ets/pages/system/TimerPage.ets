@@ -1,7 +1,7 @@
 
 @Entry({routeName: "TimerPage"})
 @Component
-export struct TimerPage {
+struct TimerPage {
   build() {
   }
 }

@@ -137,7 +137,7 @@ async function release() {
 
 @Entry
 @Component
-export struct AudioPlayerPage {
+struct AudioPlayerPage {
 
   build() {
   }

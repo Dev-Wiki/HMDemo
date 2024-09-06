@@ -1,9 +1,9 @@
 import { Emitter, EmitterItem } from '@devwiki/base';
-import { Toast } from '../../../../../../common_ui/src/main/ets/utils/Toast';
+import { Toast } from '@devwiki/common_ui';
 
 @Entry
 @Component
-export struct HomePage {
+struct HomePage {
 
   @Provide tv1ViewModel: TabView1ViewModel = new TabView1ViewModel();
   @Provide tv2ViewModel: TabView2ViewModel = new TabView2ViewModel();

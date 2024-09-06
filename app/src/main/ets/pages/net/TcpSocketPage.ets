@@ -60,7 +60,7 @@ class TcpSocket {
 
 @Component
 @Entry
-export struct TcpSocketPage {
+struct TcpSocketPage {
 
   tcpSocket: TcpSocket = new TcpSocket();
 

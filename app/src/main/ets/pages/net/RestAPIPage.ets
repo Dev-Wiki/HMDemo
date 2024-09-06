@@ -6,7 +6,7 @@ const TAG = '[RestAPIPage]'
 
 @Entry({routeName: "RestAPIPage"})
 @Component
-export struct RestAPIPage {
+struct RestAPIPage {
 
   @State viewModel: RestAPIViewModel = new RestAPIViewModel();
 

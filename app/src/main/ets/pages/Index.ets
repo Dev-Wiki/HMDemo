@@ -6,8 +6,6 @@ import { BusinessError } from '@ohos.base';
 import { Log } from '@devwiki/base';
 import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
-import { Context } from '@kit.AbilityKit';
-import { Calculator } from '@devwiki/hmcalculate';
 import { MyApp } from '../MyApp';
 
 import('./animation/LoadingPage')
@@ -31,7 +29,8 @@ struct Index {
       name: 'Component',
       items: [
         {name: 'InputPage', page: 'pages/component/InputPage'},
-        {name: 'ToastPage', page: 'pages/component/ToastPage'}
+        {name: 'ToastPage', page: 'pages/component/ToastPage'},
+        {name: 'TextPage', page: 'pages/component/TextPage'}
       ]
     },
     // 布局

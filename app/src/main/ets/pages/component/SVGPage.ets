@@ -2,7 +2,7 @@ import { CommonRes } from '@devwiki/common_ui/Index'
 
 @Entry
 @Component
-export struct SVGPage {
+struct SVGPage {
   build() {
     Column() {
       Text().width(96).height(96).backgroundColor($r('app.media.ic_eye_off'))

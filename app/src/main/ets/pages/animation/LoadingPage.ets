@@ -4,7 +4,7 @@ import { curves } from '@kit.ArkUI';
 
 @Entry({ routeName: PageName.loadingPage })
 @Component
-export struct LoadingPage {
+struct LoadingPage {
   @State animate: boolean = false;
   @State rotateValue: number = 0;
 
