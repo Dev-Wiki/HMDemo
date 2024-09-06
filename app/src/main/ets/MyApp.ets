@@ -1,5 +1,10 @@
 import { Context } from '@ohos.arkui.UIContext';
 import { window } from '@kit.ArkUI';
+import { abilityAccessCtrl } from '@kit.AbilityKit';
+import { Log } from '@devwiki/base';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+const TAG = '[MyApp]'
 
 export class MyApp {
 
@@ -19,5 +24,20 @@ export class MyApp {
   static initWindow(window: window.Window) {
     MyApp.mainWindow = window;
     MyApp.uiContext = window.getUIContext();
+  }
+
+  static requestBasicPermission() {
+    let atManager = abilityAccessCtrl.createAtManager();
+    try {
+      atManager.requestPermissionsFromUser(MyApp.uiAbilityContext,
+        ['ohos.permission.INTERNET'])
+        .then((data) => {
+          Log.i(TAG, 'requestBasicPermission, data:' + data.permissions[0])
+        })
+        .catch((err: BusinessError) => {
+          Log.i(TAG, 'requestBasicPermission, error:' + err.message)
+        })
+    } catch (err) {
+    }
   }
 }

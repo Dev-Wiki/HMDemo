@@ -13,6 +13,8 @@ export default class AppAbility extends UIAbility {
 
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    MyApp.initAbility(this.context);
+    MyApp.requestBasicPermission();
   }
 
   onDestroy(): void {
@@ -22,7 +24,6 @@ export default class AppAbility extends UIAbility {
 onWindowStageCreate(windowStage: window.WindowStage): void {
   // Main window is created, set main page for this ability
   hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-  MyApp.initAbility(this.context);
   windowStage.loadContent('pages/Index', (err, data) => {
     if (err.code) {
       hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
