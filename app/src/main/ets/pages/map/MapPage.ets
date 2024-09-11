@@ -24,8 +24,9 @@ struct MapPage {
         .width(60)
         .backgroundColor(Color.Red)
         .onClick(() => {
-          if (this.isLocationPermission) {
-          }
+          this.locationHelper.getLocationAddress( 31.12, 121.11, 1, (error: BusinessError, data:  geoLocationManager.GeoAddress[]) => {
+
+          })
         })
 
       SymbolGlyph($r('sys.symbol.xmark')).width(24).height(24).borderRadius(12).onClick(() => {
@@ -45,16 +46,13 @@ struct MapPage {
   build() {
 
     Column(){
-      if (this.isShowLocationPopup) {
-        this.locationViewBuilder();
-      }
+      this.locationViewBuilder();
       Text(this.locText);
     }.width('100%').height('100%')
   }
 
   aboutToAppear(): void {
     this.locationHelper.requestPermissionsFromUser((allowScope: boolean, allowPrecision: boolean) => {
-
     })
   }
 }
