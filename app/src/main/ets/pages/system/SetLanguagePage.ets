@@ -13,7 +13,7 @@ struct SetLanguagePage {
   aboutToAppear(): void {
     let languages:string[] = i18n.System.getSystemLanguages();
     languages.forEach((value, index) => {
-      Log.i(TAG, `${index.toString()}:${value}`)
+      Log.info(TAG, `${index.toString()}:${value}`)
     })
   }
 

@@ -1,6 +1,8 @@
 import { Log } from '@devwiki/base/Index';
 import axios, { AxiosError, AxiosResponse } from '@ohos/axios'
 import http from '@ohos.net.http';
+import { RestAPI } from './RestAPI';
+import { Organization } from './APIModel';
 
 const TAG = '[RestAPIPage]'
 
@@ -17,15 +19,28 @@ struct RestAPIPage {
         direction: FlexDirection.Column,
         alignItems: ItemAlign.Center
       }) {
-        Button("GetByAxios").onClick(() =>{
-          this.viewModel.getServerVersionByAxios();
-        }).margin({top: 20})
+
+        Refresh({
+          refreshing: $$this.viewModel.refreshing,
+        }){
+          List(){
+            ForEach(this.viewModel.orsg, (org: Organization, index: number) =>{
+              ListItem(){
+                Row() {
+                  Image(org.avatar_url).width(36).height(36).objectFit(ImageFit.Contain)
+                  Text(org.name)
+                }.justifyContent(FlexAlign.Start).alignItems(VerticalAlign.Center).height(48)
+              }
+            })
+          }.width('100%').height('100%').layoutWeight(1)
+        }.pullToRefresh(true)
+        .onRefreshing(() =>{
+          this.viewModel.getAllOrgs();
+        })
 
         Button("GetByHttp").onClick(() =>{
-          this.viewModel.getServerVersionByHttp();
+          this.viewModel.getAllOrgs();
         }).margin({top: 20})
-
-        Text(this.viewModel.serverVersion).margin({top: 20})
       }.width('80%')
     }.width('100%')
   }
@@ -34,40 +49,20 @@ struct RestAPIPage {
 
 class RestAPIViewModel {
 
-  readonly viewUrl: string = 'https://music.devwiki.net/rest/ping.view?v=1.16.1&c=myapp&f=json';
-  serverVersion: string = '123'
+  orsg: Organization[] = []
+  refreshing: boolean = false;
 
-  async getServerVersionByAxios() {
-    this.serverVersion = ''
-    await axios({
-      method: "post",
-      url: this.viewUrl
-    }).then((response: AxiosResponse) => {
-      if (response.status == 200) {
-        let version:string = response.data['subsonic-response']['serverVersion'];
-        this.serverVersion = version;
-        Log.i(`serverVersion: ${this.serverVersion}`)
+  private restAPI: RestAPI = new RestAPI();
+
+  getAllOrgs() {
+    this.restAPI.getAllOrganizations((result) => {
+      if (result.data) {
+        this.orsg = result.data;
       }
-    }).catch((error: AxiosError) => {
-      Log.e(error.message);
+      this.refreshing = false;
     })
   }
 
   getServerVersionByHttp() {
-    this.serverVersion = ''
-    let httpRequest = http.createHttp();
-    let option:http.HttpRequestOptions = {
-      method: http.RequestMethod.GET
-    };
-    httpRequest.request(this.viewUrl, option, (error, resp) =>{
-      if (!error) {
-        Log.i(TAG, 'request http code:' + resp.responseCode)
-        let version:string = resp.result['subsonic-response']['serverVersion'];
-        this.serverVersion = version;
-      } else {
-        Log.e(TAG, `request failed, code:${error.code}, message:${error.message}`)
-      }
-      httpRequest.destroy();
-    });
   }
 }

@@ -34,12 +34,12 @@ export class BaseLocalStorage {
       let options: dataPreferences.Options = { name: BaseLocalStorage.XY_DP_Name };
       this.preferences = dataPreferences.getPreferencesSync(this.context, options);
     } else {
-      Log.i("LocalStorage is already init.")
+      Log.info("LocalStorage is already init.")
     }
   }
 
   public putData(key: string, value: dataPreferences.ValueType) {
-    Log.i(`put sp data, key:${key}, value:${value}`)
+    Log.info(`put sp data, key:${key}, value:${value}`)
     this.preferences?.putSync(key, value);
     this.preferences?.flush();
   }
@@ -51,7 +51,7 @@ export class BaseLocalStorage {
 
   public getData(key: string, defaultValue: dataPreferences.ValueType): dataPreferences.ValueType | undefined {
     let value = this.preferences?.getSync(key, defaultValue);
-    Log.i(`get sp data, key:${key}, value:${value}`)
+    Log.info(`get sp data, key:${key}, value:${value}`)
     return value;
   }
 

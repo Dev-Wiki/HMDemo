@@ -26,10 +26,10 @@ class TcpSocket {
         let message = String.fromCharCode(messages);
         messageView += message;
       }
-      Log.i(`receive message: ${messageView}`)
+      Log.info(`receive message: ${messageView}`)
     })
     this.tcp.on('error', (error) => {
-      Log.i(`tcp error: ${error.message}`)
+      Log.info(`tcp error: ${error.message}`)
     })
   }
 
@@ -40,19 +40,19 @@ class TcpSocket {
     this.tcp.bind(address)
     this.tcp.connect(this.connectOptions, (error) => {
       if (error) {
-        Log.e(`connect fail: ${error.message}`);
+        Log.error(`connect fail: ${error.message}`);
         return;
       }
-      Log.i('connect success')
+      Log.info('connect success')
     })
   }
 
   send(text: string) {
     let option: socket.TCPSendOptions = { data: text}
     this.tcp.send(option).then(() => {
-      Log.i(`send data: ${text} success`)
+      Log.info(`send data: ${text} success`)
     }).catch((error: BusinessError) => {
-      Log.e(`send data: ${text} error: ${error.message}`)
+      Log.error(`send data: ${text} error: ${error.message}`)
     })
   }
 }

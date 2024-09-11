@@ -32,10 +32,10 @@ export class MyApp {
       atManager.requestPermissionsFromUser(MyApp.uiAbilityContext,
         ['ohos.permission.INTERNET'])
         .then((data) => {
-          Log.i(TAG, 'requestBasicPermission, data:' + data.permissions[0])
+          Log.info(TAG, 'requestBasicPermission, data:' + data.permissions[0])
         })
         .catch((err: BusinessError) => {
-          Log.i(TAG, 'requestBasicPermission, error:' + err.message)
+          Log.info(TAG, 'requestBasicPermission, error:' + err.message)
         })
     } catch (err) {
     }

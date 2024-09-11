@@ -7,23 +7,23 @@ let format: string = `%{public}s, %{public}s`;
 
 export class Log {
 
-  static d(...args: string[]) {
+  static debug(...args: string[]) {
     hilog.debug(domain, prefix, format, args);
   }
 
-  static i(...args: string[]) {
+  static info(...args: string[]) {
     hilog.info(domain, prefix, format, args);
   }
 
-  static w(...args: string[]) {
+  static warn(...args: string[]) {
     hilog.warn(domain, prefix, format, args);
   }
 
-  static e(...args: string[]) {
+  static error(...args: string[]) {
     hilog.error(domain, prefix, format, args);
   }
 
-  static f(...args: string[]) {
+  static fatal(...args: string[]) {
     hilog.fatal(domain,prefix, format, args);
   }
 

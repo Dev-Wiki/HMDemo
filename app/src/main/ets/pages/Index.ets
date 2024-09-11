@@ -113,17 +113,17 @@ struct Index {
     }).then((result: promptAction.ShowDialogSuccessResponse) => {
       if (result.index === 0) {
         // 用户点击了“取消”按钮
-        Log.i('User canceled the operation.');
+        Log.info('User canceled the operation.');
       } else if (result.index === 1) {
         // 用户点击了“确认”按钮
-        Log.i('User confirmed the operation.');
+        Log.info('User confirmed the operation.');
         // 调用router.back()方法，返回上一个页面
         router.back();
       }
     }).catch((err: Error) => {
       let message = (err as BusinessError).message
       let code = (err as BusinessError).code
-      Log.i(`Invoke showDialog failed, code is ${code}, message is ${message}`);
+      Log.info(`Invoke showDialog failed, code is ${code}, message is ${message}`);
     })
     return true;
   }

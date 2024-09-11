@@ -106,7 +106,7 @@ export class ScreenUtil {
   }
 
   setWindowKeepScreenOn(isKeep: boolean) {
-    Log.i(`setWindowKeepScreenOn:${isKeep}`)
+    Log.info(`setWindowKeepScreenOn:${isKeep}`)
     window.getLastWindow(getContext(this))
       .then((windowClass: window.Window) => {
         windowClass.setWindowKeepScreenOn(isKeep);
