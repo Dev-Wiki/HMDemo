@@ -3,6 +3,8 @@ import { Log } from '@devwiki/base/Index';
 import { APIError, APIHeader, APIQuery, APIRequestMethod, Organization } from './APIModel';
 import { APIRequest } from './APIModel';
 import { APIResult } from './APIModel';
+import axios from '@ohos/axios';
+import { Axios } from '@ohos/axios';
 
 const TAG = '[RestAPI]'
 

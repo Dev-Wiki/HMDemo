@@ -18,6 +18,7 @@
     "pages/media/PhotoPage",
 
     "pages/mvvm/HomePage",
+    "pages/mvvm/ArrayBindPage",
 
     "pages/net/TcpSocketPage",
     "pages/net/RestAPIPage",

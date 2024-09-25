@@ -7,13 +7,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "build_script/sign/HM4Demo.cer",
-          "storePassword": "0000001B9C6223E8C618FEFD3D871B066F744A4E9C03C09D8ED7E7C7ECE6C1F53A54A6748EC341B960E492",
+          "certpath": "C:\\Users\\zyz\\.ohos\\config\\default_HMDemo_i5yHT0lu8Bugf7Se0a-mWm67_DsSdIYAWNVACnIC98c=.cer",
+          "storePassword": "0000001B17961DDECEBACEACD9CAA1E45CB0BEF5D5A935C253F2AB99644951676ED1B6F102D2B5AD8BCBA2",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001B63515E7120BC166D17A66B98A717DE9B06276194E4317B5317F70EA2835B8AD262B9DD4FD6AB55",
-          "profile": "build_script/sign/HM4Demo.p7b",
+          "keyPassword": "0000001B72605A837A1D1827D656F3D157F771A9B6DEC8B264626F1EFBBDA8FF65464F416F4B5C7F9FA84F",
+          "profile": "C:\\Users\\zyz\\.ohos\\config\\default_HMDemo_i5yHT0lu8Bugf7Se0a-mWm67_DsSdIYAWNVACnIC98c=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "build_script/sign/HM4Demo.p12"
+          "storeFile": "C:\\Users\\zyz\\.ohos\\config\\default_HMDemo_i5yHT0lu8Bugf7Se0a-mWm67_DsSdIYAWNVACnIC98c=.p12"
         }
       }
     ],
@@ -22,7 +22,7 @@
       {
         "name": "default",
         "signingConfig": "default",
-        "compatibleSdkVersion": "4.0.0(10)",
+        "compatibleSdkVersion": "5.0.0(12)",
         "runtimeOS": "HarmonyOS",
       }
     ],

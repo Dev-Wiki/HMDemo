@@ -8,7 +8,9 @@ import { BaseLocalStorage, ScreenUtil } from '@devwiki/base';
 import { HomeItem, HomeItemGroup } from '../model/Home';
 import { MyApp } from '../MyApp';
 
-import('./animation/LoadingPage')
+import './animation/LoadingPage'
+import './animation/ScaleRotatePage'
+import { PageName } from './PageName';
 
 @Entry
 @Component
@@ -47,6 +49,7 @@ struct Index {
       items: [
         { name: 'CompTransition', page: 'pages/animation/CompTransitionPage'},
         { name: 'Loading', page: 'pages/animation/LoadingPage'},
+        { name: 'ScaleRotatePage', page: PageName.ScaleRotatePage },
       ]
     },
     // 多媒体
@@ -62,6 +65,7 @@ struct Index {
       items: [
         {name: "Scheme", page: 'pages/system/SchemePage'},
         {name: "MVVM", page: 'pages/mvvm/HomePage'},
+        {name: "ArrayBind", page: 'pages/mvvm/ArrayBindPage'},
         {name: "SetLanguage", page: 'pages/system/SetLanguagePage'}
       ]
     },
@@ -150,7 +154,11 @@ struct Index {
       Divider().margin({ top: 2 });
     }.onClick(() => {
       if (item.page) {
-        this.getUIContext().getRouter().pushUrl({url: item.page })
+        if (item.page.startsWith('pages/')) {
+          this.getUIContext().getRouter().pushUrl({url: item.page })
+        } else {
+          this.getUIContext().getRouter().pushNamedRoute({name: item.page })
+        }
       }
     })
   }
